@@ -1,29 +1,48 @@
 from graph_definition import graph
+from langgraph.pregel import Interrupt
 
-# Cria uma instância do grafo
-graph_id = "news_report_001"
+#  Executa até o primeiro interrupt (após busca e merge)
+state = graph.invoke({})
 
-# Inicializa o grafo 
-inputs = {}
-graph.invoke(inputs, graph_id=graph_id)
+if isinstance(state, Interrupt):
+    print("\n Grafo pausou na revisão (request_review)")
+    if hasattr(state, "value"):
+        state = state.value  #  Extrai o estado atual
+    else:
+        state = {}
+# ✅ Garante que o estado seja um dicionário válido
+assert isinstance(state, dict), "O estado deve ser um dicionário!"
 
-# O grafo vai pausar na revisão
+print("\n Estado atual (após busca e merge):")
+print(state)
 
-# Se aprovado 
-graph.send(
-    graph_id=graph_id,
-    input={
-    "approved":True,
-    "approved_content": "Aprovado, o texto está bom"
-        }
-    )
+#  O grafo agora está pausado na revisão manual (request_review).
 
-# Ou se quiser solicitar revisão
+# ✅ ➕ Se quiser aprovar:
+print("\n✅ Aprovado manualmente, continuando o fluxo...\n")
+state = graph.invoke(
+    {
+        **state, # <-- recebe o estado anterior
+        "approved": True,
+        "approved_content": "Aprovado. O texto está ótimo!"
+    }
+)
 
-graph.send(
-    graph_id=graph_id,
-    input={
-    "approved":False,
-    "feedback": "Melhore a clareza e adicione mais dados sobre macroeconomia."
-        }
-    )
+#   Ou, se quiser solicitar uma revisão automática:
+# state = graph.invoke(
+#     {
+#         "approved": False,
+#         "feedback": "Melhore a parte de macroeconomia e adicione dados mais recentes."
+#     }
+# )
+
+if isinstance(state, Interrupt):
+    print("\n Grafo pausou novamente na revisão (após revisão automática)")
+    state = state.value  #  Extrai novamente o estado
+
+# ✅ Garante que o estado final seja um dicionário
+assert isinstance(state, dict), "O estado final deve ser um dicionário!"
+
+#  Verifica estado final:
+print("\n✅ Resultado final:")
+print(state.get("final_editorial", "⚠️ Nenhum conteúdo final encontrado."))

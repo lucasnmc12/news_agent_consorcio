@@ -2,7 +2,7 @@ from llm_factory import get_llm
  
 llm = get_llm("merge")
 
-def merge_results(state):
+def merged_content(state):
     print("Unindo o resumo das buscas...")
     prompt = f"""
     Você é um editor de notícias. Una os seguintes resumos em um único texto editorial, 
@@ -11,7 +11,7 @@ def merge_results(state):
 
     - Banco Central {state.get('search_bcb', '')}
     - Consórcios: {state.get('search_consorcios', '')}
-    - Macroeconomia: {state.get('seacrh_macro', '')}
+    - Macroeconomia: {state.get('search_macro', '')}
     """
 
     result = llm.invoke(prompt)

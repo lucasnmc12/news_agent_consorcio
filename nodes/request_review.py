@@ -1,12 +1,15 @@
-from langgraph import END, StateGraph
-from langgraph.pregel import interrupt
+from langgraph.graph import  END
+from langgraph.pregel import Interrupt
 
 def request_review(state):
     print("Revisão pendente.")
     print("\nConteúdo gerado até agora:\n")
-    print(state["merged_content"])
+    print(state.get("merged_content", "Nenhum conteúdo encontrado"))
+
+     # Se quiser, adiciona um flag no estado:
+    state["status"] = "Aguardando revisão humana"
 
     # Pausa o grafo aguardando aprovação
-    raise interrupt("Aguardando revisão humana")
+    return Interrupt(value=state)
 
     

@@ -1,34 +1,29 @@
-from langgraph import StateGraph
-from langgraph.pregel import END
+from langgraph.graph import StateGraph, END
+# from langgraph.pregel import END
 
-from nodes.search_bcb import search_bcb
-from nodes.search_consorcios import search_consorcios
-from nodes.search_macro import search_macro
-from nodes.merge_results import merge_results
+from nodes.merged_content import merged_content
 from nodes.request_review import request_review
 from nodes.review_llm import review_llm
 from nodes.format_editorial import format_editorial
+from nodes.search_all import search_all
 
 GraphState = dict
 
 workflow = StateGraph(GraphState)
 
 # Adiciona os nós
-workflow.add_node("search_bcb", search_bcb)
-workflow.add_node("search_consorcios", search_consorcios)
-workflow.add_node("search_macro", search_macro)
-workflow.add_node("merged_content", merge_results)
+workflow.add_node("search_all", search_all) 
+workflow.add_node("merged_content", merged_content)
 workflow.add_node("request_review", request_review)
 workflow.add_node("review_llm", review_llm)
 workflow.add_node("format_editorial", format_editorial)
 
 # Pontos de entrada
-workflow.set_entry_point(["search_bcb", "search_consorcios", "search_macro"])
+workflow.set_entry_point("search_all")
 
 # Transições de busca --> merge
-workflow.add_edge("search_bcb", "merged_content")
-workflow.add_edge("search_consorcios", "merge_results")
-workflow.add_edge("search_macro", "merge_results")
+
+workflow.add_edge("search_all", "merged_content")
 
 # Merge --> revisão
 workflow.add_edge("merged_content", "request_review")
@@ -37,11 +32,11 @@ workflow.add_edge("merged_content", "request_review")
 
 def review_edge(state):
     if state.get("approved"):
-        return "fromat_editorial"
+        return "format_editorial"
     else:
         return "review_llm"
     
-workflow.add_edge("request_review", review_edge)
+workflow.add_conditional_edges("request_review", review_edge)
 
 # Após revisão automática, volta para a revisão manual 
 workflow.add_edge("review_llm", "request_review")
