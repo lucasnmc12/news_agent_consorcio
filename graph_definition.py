@@ -7,6 +7,10 @@ from nodes.review_llm import review_llm
 from nodes.format_editorial import format_editorial
 from nodes.search_all import search_all
 
+from langgraph.checkpoint.memory import MemorySaver
+
+checkpointer = MemorySaver()
+
 GraphState = dict
 
 workflow = StateGraph(GraphState)
@@ -31,6 +35,7 @@ workflow.add_edge("merged_content", "request_review")
 # Decisão após revisão
 
 def review_edge(state):
+    print("🔎 review_edge recebeu:", state)
     if state.get("approved"):
         return "format_editorial"
     else:
@@ -46,6 +51,6 @@ workflow.add_edge("review_llm", "request_review")
 workflow.set_finish_point("format_editorial")
 
 # Compila 
-graph = workflow.compile()
+graph = workflow.compile(checkpointer=checkpointer)
 
 

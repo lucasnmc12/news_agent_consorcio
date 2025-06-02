@@ -3,8 +3,7 @@ from nodes.search_consorcios import search_consorcios
 from nodes.search_macro import search_macro
 
 def search_all(state):
-    print("Executando todas as buscas...")
-
+    
     bcb = search_bcb(state)
     consorcios = search_consorcios(state)
     macro = search_macro(state)

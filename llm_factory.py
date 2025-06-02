@@ -8,7 +8,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 LLM_CONFIG = {
     "search": "llama3-8b-8192",
     "merge": "llama3-70b-8192",
-    "review": "mixtral-8x7b-32768",
+    "review": "llama3-70b-8192",
     "formatting": "llama3-70b-8192"
 }
 

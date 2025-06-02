@@ -1,15 +1,18 @@
-from langgraph.graph import  END
-from langgraph.pregel import Interrupt
+from langgraph.graph import StateGraph
+from langgraph.types import interrupt
+from langgraph.checkpoint.memory import MemorySaver
 
 def request_review(state):
     print("Revisão pendente.")
-    print("\nConteúdo gerado até agora:\n")
-    print(state.get("merged_content", "Nenhum conteúdo encontrado"))
 
-     # Se quiser, adiciona um flag no estado:
-    state["status"] = "Aguardando revisão humana"
+    estado_atual = state.copy()
+    estado_atual["status"] = "Aguardando revisão humana"
 
-    # Pausa o grafo aguardando aprovação
-    return Interrupt(value=state)
+    return interrupt({
+        "human_message": "O conteúdo foi interrompido para revisão humana",
+        "estado_atual": estado_atual
+        })
+
+    
 
     

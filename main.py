@@ -1,47 +1,39 @@
 from graph_definition import graph
-from langgraph.pregel import Interrupt
+from langgraph.types import interrupt
+from langgraph.types import Command
 
-#  Executa até o primeiro interrupt (após busca e merge)
-state = graph.invoke({})
+# Identificador para o fluxo de execução (obrigatório com checkpointer)
+config = {"configurable": {"thread_id": "thread-editorial-001"}}
 
-if isinstance(state, Interrupt):
-    print("\n Grafo pausou na revisão (request_review)")
-    if hasattr(state, "value"):
-        state = state.value  #  Extrai o estado atual
-    else:
-        state = {}
-# ✅ Garante que o estado seja um dicionário válido
-assert isinstance(state, dict), "O estado deve ser um dicionário!"
+# Estado inicial
+state = {}
 
-print("\n Estado atual (após busca e merge):")
-print(state)
+while True:
+    state = graph.invoke(state if isinstance(state, dict) else Command(resume=state), config=config)
 
-#  O grafo agora está pausado na revisão manual (request_review).
 
-# ✅ ➕ Se quiser aprovar:
-print("\n✅ Aprovado manualmente, continuando o fluxo...\n")
-state = graph.invoke(
-    {
-        **state, # <-- recebe o estado anterior
-        "approved": True,
-        "approved_content": "Aprovado. O texto está ótimo!"
-    }
-)
+    # 📍 Verifica se houve interrupção para revisão humana
+    if "__interrupt__" in state:
+        interrupt = state["__interrupt__"][0].value
+        print("\nMensagem para humano: ", interrupt["human_message"])
 
-#   Ou, se quiser solicitar uma revisão automática:
-# state = graph.invoke(
-#     {
-#         "approved": False,
-#         "feedback": "Melhore a parte de macroeconomia e adicione dados mais recentes."
-#     }
-# )
+        merged = interrupt["estado_atual"].get("merged_content", "[sem conteúdo]")
+        print(f"\nConteúdo atual:\n{merged}")
 
-if isinstance(state, Interrupt):
-    print("\n Grafo pausou novamente na revisão (após revisão automática)")
-    state = state.value  #  Extrai novamente o estado
+        resposta_humana = input("\nDigite 'aprovado' ou escreva um feedback personalizado: ")
 
-# ✅ Garante que o estado final seja um dicionário
-assert isinstance(state, dict), "O estado final deve ser um dicionário!"
+        resume_data = interrupt["estado_atual"] # recupera o estado atual no momento do interrupt
+
+        if resposta_humana.strip().lower() == "aprovado":
+            resume_data["approved"] = True
+            resume_data["approved_content"] = "Aprovado manualmente"
+        else:
+            resume_data["approved"] = False
+            resume_data["feedback"] = resposta_humana
+
+        state = Command(resume=resume_data)
+        continue
+    break
 
 #  Verifica estado final:
 print("\n✅ Resultado final:")
