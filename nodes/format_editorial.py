@@ -10,7 +10,7 @@ def format_editorial(state):
     Mantenha clareza, objetividade e profissionalismo.
 
     Texto:
-    {state.get('approved_content', state.get('merged_content', ''))}
+    {state.get('merged_content', '')}
     """
     result = llm.invoke(prompt)
 

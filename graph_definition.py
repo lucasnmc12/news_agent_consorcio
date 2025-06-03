@@ -1,15 +1,13 @@
 from langgraph.graph import StateGraph, END
 # from langgraph.pregel import END
 
+from langgraph.types import Command
 from nodes.merged_content import merged_content
 from nodes.request_review import request_review
 from nodes.review_llm import review_llm
 from nodes.format_editorial import format_editorial
 from nodes.search_all import search_all
 
-from langgraph.checkpoint.memory import MemorySaver
-
-checkpointer = MemorySaver()
 
 GraphState = dict
 
@@ -35,7 +33,13 @@ workflow.add_edge("merged_content", "request_review")
 # Decisão após revisão
 
 def review_edge(state):
-    print("🔎 review_edge recebeu:", state)
+    print(type(state))
+    if isinstance(state, Command):
+        print("⚠️ Está vindo como Command, extraindo resume")
+        state = state.resume
+    # print("🔎 review_edge recebeu:", state) --> conferindo como a função recebe o estado
+    print("✅ Campo 'approved' está presente?", "approved" in state)
+    print("✅ Valor de 'approved':", state.get("approved"))
     if state.get("approved"):
         return "format_editorial"
     else:
@@ -50,7 +54,6 @@ workflow.add_edge("review_llm", "request_review")
 # Finalização
 workflow.set_finish_point("format_editorial")
 
-# Compila 
-graph = workflow.compile(checkpointer=checkpointer)
+
 
 
