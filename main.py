@@ -5,6 +5,8 @@ from graph_definition import workflow
 from langgraph.checkpoint.memory import InMemorySaver
 import json
 from salvar_relatorio_pdf import salvar_como_markdown, converter_md_para_html, salvar_pdf
+from datetime import datetime
+
 
 
 checkpointer = InMemorySaver()
@@ -53,6 +55,16 @@ conteudo_final = state.get("final_editorial", "⚠️ Nenhum conteúdo final enc
 print("\n✅ Resultado final:")
 print(conteudo_final)
 
-salvar_como_markdown(conteudo_final)                      # 1. salva .md
-html = converter_md_para_html()                           # 2. converte para HTML
-salvar_pdf(html)                                          # 3. salva como PDF
+# Define nome base com data
+data_hoje = datetime.now().strftime("%d-%m-%Y")
+nome_md = f"relatorio_{data_hoje}.md"
+nome_pdf = f"relatorio_{data_hoje}.pdf"
+
+# 1. Salva conteúdo como Markdown
+salvar_como_markdown(conteudo_final, nome_arquivo=nome_md)
+
+# 2. Converte Markdown para HTML
+html = converter_md_para_html(nome_arquivo_md=nome_md)
+
+# 3. Salva HTML como PDF
+salvar_pdf(html, nome_arquivo=nome_pdf)

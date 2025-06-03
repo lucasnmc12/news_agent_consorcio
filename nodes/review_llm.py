@@ -8,17 +8,22 @@ def review_llm(state):
     feedback = state.get("feedback", "Melhore a clareza e a coesão do texto.")
 
     prompt = f"""
-    Você é um editor de texto. Aqui está um texto que precisa ser revisado:
+        Você é um editor profissional encarregado de revisar um relatório econômico que será entregue à diretoria de uma empresa de consórcios.
 
-    Texto:
-    {state.get('merged_content', '')}
+        Aqui está o conteúdo a ser revisado:
+        {state.get('merged_content', '')}
 
-    Feedback para revisão:
-    {feedback}
+        Comentários ou instruções específicas de revisão:
+        {feedback}
 
-    Aplique as correções necessárias, melhore a clareza, ajuste eventuais erros 
-    e torne o texto mais profissional.
-    """
+        **Sua tarefa**:
+        - Aplique melhorias com base no feedback fornecido.
+        - Corrija erros gramaticais e de digitação, se houver.
+        - Aumente a clareza, coesão e profissionalismo do texto.
+        - Mantenha a estrutura editorial, datas, fontes e links presentes no conteúdo.
+
+        Retorne o texto final já revisado.
+        """
     resposta = llm.invoke(prompt)
 
     # Atualiza o estado com o texto revisado 

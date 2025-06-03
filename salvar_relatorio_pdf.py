@@ -20,7 +20,11 @@ def converter_md_para_html(nome_arquivo_md="relatorio.md"):
         md_text = f.read()
     return markdown(md_text)
 
-def salvar_pdf(html_content, nome_arquivo="relatorio.pdf"):
+def salvar_pdf(html_content, nome_arquivo=None):
+    if nome_arquivo is None:
+        data_hoje = datetime.now().strftime("%d-%m-%Y")
+        nome_arquivo = f"relatorio_{data_hoje}.pdf"
+        
     caminho_pdf = os.path.join("results", "results_pdf", nome_arquivo)
     HTML(string=html_content).write_pdf(caminho_pdf)
     print(f"✅ PDF salvo em: {caminho_pdf}")
