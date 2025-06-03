@@ -7,7 +7,7 @@ llm = get_llm("search")
 def search_bcb(state):
     print ( "Buscando informações sobre o Banco Central...")
     data_execucao = datetime.now().strftime("%d/%m/%Y")
-    prompt = """
+    prompt = f"""
         Data de execução do relatório: {data_execucao}
         Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
 

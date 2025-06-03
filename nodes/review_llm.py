@@ -27,5 +27,5 @@ def review_llm(state):
     resposta = llm.invoke(prompt)
 
     # Atualiza o estado com o texto revisado 
-    state["merged_content"] = resposta
+    state["merged_content"] = resposta.content
     return state
