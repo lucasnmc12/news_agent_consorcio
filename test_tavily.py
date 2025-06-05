@@ -1,38 +1,21 @@
-from llm_factory import get_llm
 from datetime import datetime
 from tavily import TavilyClient
 from dotenv import load_dotenv
 import os
+from llm_factory import get_llm  # Certifique-se de que isso funciona
 
 load_dotenv()
+
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 tavily_client = TavilyClient(TAVILY_API_KEY)
-llm = get_llm("search")
 
-def buscar_noticias_macro(query="macroeconomia Brasil inflação PIB taxa de juros desemprego câmbio "):
-    print("🔎 Buscando notícias macroeconômicas com Tavily...")
+def buscar_noticias(query="Banco Central do Brasil últimas notícias"):
+    print("🔎 Buscando com Tavily...")
     resultados = tavily_client.search(
         query=query,
-        max_results=10,
-        topic="news",
-        days=20,
-        include_domains=[
-        "valor.globo.com",
-        "exame.com",
-        "economia.estadao.com.br",
-        "g1.globo.com",
-        "cnnbrasil.com.br",
-        "infomoney.com.br",
-        "folha.uol.com.br",
-        "oglobo.globo.com",
-        "economia.uol.com.br",
-        "bcb.gov.br",
-        "abac.org.br",
-        "ibge.gov.br",
-        "ibre.fgv.br",
-        "https://abac.org.br/imprensa/press-releases",
-        "https://abac.org.br/imprensa/consorcio-na-midia-todos"
-    ],
+        max_results=5,
+        time_range="week",
+        topic="general",
         include_images=False,
         include_image_descriptions=False,
         search_depth="advanced",
@@ -55,20 +38,21 @@ def formatar_resultados(noticias):
         )
     return resumo
 
-def search_macro(state):
-    noticias = buscar_noticias_macro()
+def gerar_relatorio_llm():
+    noticias = buscar_noticias()
     if not noticias:
-        print("⚠️ Nenhuma notícia macroeconômica encontrada.")
-        return state
+        print("⚠️ Nenhuma notícia encontrada.")
+        return
 
     resumo_links = formatar_resultados(noticias)
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 
     prompt = f"""
 Data de execução do relatório: {data_execucao}
+
 Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
 
-Com base nas notícias dos últimos 15 dias sobre **indicadores macroeconômicos no Brasil**, elabore um relatório profissional:
+Com base nas notícias reais a seguir sobre o **Banco Central do Brasil**, elabore um relatório profissional:
 
 {resumo_links}
 
@@ -86,7 +70,11 @@ Com base nas notícias dos últimos 15 dias sobre **indicadores macroeconômicos
 
 Evite opiniões pessoais, especulações ou informações desatualizadas.
 """
+
+    llm = get_llm("search")
     result = llm.invoke(prompt)
-    state["search_macro"] = result.content
+    print("\n📄 Relatório gerado pela LLM:\n")
     print(result.content)
-    return state
+
+if __name__ == "__main__":
+    gerar_relatorio_llm()

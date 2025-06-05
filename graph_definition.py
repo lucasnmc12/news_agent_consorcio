@@ -37,7 +37,7 @@ def review_edge(state):
     if isinstance(state, Command):
         print("⚠️ Está vindo como Command, extraindo resume")
         state = state.resume
-    print("🔎 review_edge recebeu:", state) # --> conferindo como a função recebe o estado
+    # print("🔎 review_edge recebeu:", state) # --> conferindo como a função recebe o estado
     print("✅ Campo 'approved' está presente?", "approved" in state)
     print("✅ Valor de 'approved':", state.get("approved"))
     if state.get("approved"):
