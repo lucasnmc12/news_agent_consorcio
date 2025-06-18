@@ -1,91 +1,51 @@
-from llm_factory import get_llm
+from utils.search_ddgs import buscar_noticias, formatar_resultados
+from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
+from utils.llm_factory import get_llm
 from datetime import datetime
-from tavily import TavilyClient
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
-tavily_client = TavilyClient(TAVILY_API_KEY)
-llm = get_llm("search")
 
-def buscar_noticias_macro(query="macroeconomia Brasil inflação PIB taxa de juros desemprego câmbio "):
-    print("🔎 Buscando notícias macroeconômicas com Tavily...")
-    resultados = tavily_client.search(
-        query=query,
-        max_results=10,
-        topic="news",
-        days=20,
-        include_domains=[
-        "valor.globo.com",
-        "exame.com",
-        "economia.estadao.com.br",
-        "g1.globo.com",
-        "cnnbrasil.com.br",
-        "infomoney.com.br",
-        "folha.uol.com.br",
-        "oglobo.globo.com",
-        "economia.uol.com.br",
-        "bcb.gov.br",
-        "abac.org.br",
-        "ibge.gov.br",
-        "ibre.fgv.br",
-        "https://abac.org.br/imprensa/press-releases",
-        "https://abac.org.br/imprensa/consorcio-na-midia-todos"
-    ],
-        include_images=False,
-        include_image_descriptions=False,
-        search_depth="advanced",
-        exclude_domains=["instagram.com"]
-    )
-    return resultados.get("results", [])
-
-def formatar_resultados(noticias):
-    resumo = ""
-    for n in noticias:
-        titulo = n.get("title")
-        url = n.get("url")
-        trecho = n.get("content", "").strip().replace("\n", " ")
-        dominio = url.split("/")[2].replace("www.", "")
-        resumo += (
-            f"- **Fonte**: {dominio}\n"
-            f"  **Título**: {titulo}\n"
-            f"  **Link**: {url}\n"
-            f"  **Resumo**: {trecho[:300]}...\n\n"
-        )
-    return resumo
+mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 
 def search_macro(state):
-    noticias = buscar_noticias_macro()
+    """Busca e gera relatório sobre a macroecônomia do país"""
+    query = " economia brasil inflação juros recessão últimas notícias Brasil"
+    noticias = buscar_noticias_serper(query)
+
     if not noticias:
-        print("⚠️ Nenhuma notícia macroeconômica encontrada.")
+        print("⚠️ Nenhuma notícia encontrada.")
         return state
 
-    resumo_links = formatar_resultados(noticias)
+    resumo_links = formatar_resultados_serper(noticias)
+
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 
     prompt = f"""
-Data de execução do relatório: {data_execucao}
-Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
+        Data de execução do relatório: {data_execucao}
+        Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
 
-Com base nas notícias dos últimos 15 dias sobre **indicadores macroeconômicos no Brasil**, elabore um relatório profissional:
+        Com base nas notícias dos últimos 15 dias sobre **indicadores macroeconômicos no Brasil**, elabore um relatório profissional:
 
-{resumo_links}
+        {resumo_links}
+        Dê foco especial a indicadores como inflação, PIB, taxa de juros, desemprego e câmbio, bem como decisões de política monetária, projeções econômicas e eventos que possam impactar o sistema financeiro e o setor de consórcios.
 
-**Requisitos obrigatórios**:
-- Informe a **data de publicação** de cada notícia.
-- Cite **explicitamente a fonte confiável** da informação (ex: Valor Econômico, G1, Estadão, CNN, etc).
-- Inclua o **link direto para a notícia original** ao final do relatório, em uma seção chamada **"Fontes e Links"**.
-- Apresente os dados de forma clara, objetiva e com linguagem profissional.
-- Separe as notícias por tópicos ou subtítulos, se necessário.
+        **Requisitos obrigatórios**:
+        - Cite **explicitamente a fonte confiável** da informação (ex: ABAC, Valor Econômico, G1, Estadão, Exame, etc).
+        - Apresente os dados de forma clara, detalhada e com linguagem profissional.
+        - Separe as notícias por tópicos ou subtítulos, se necessário.
 
-**Formato esperado por item**:
-- **Data**: DD/MM/AAAA  
-- **Fonte**: Nome da fonte  
-- **Resumo**: [conteúdo em linguagem formal e acessível]
+        **Formato esperado por item**:
+        - **Título**: Título da notícia  
+        - **Conteúdo**: [conteúdo detalhado em linguagem formal e acessível]
+        - **Fonte**: Nome da fonte  
+        - **Link**: URL da notícia 
 
-Evite opiniões pessoais, especulações ou informações desatualizadas.
+        Evite opiniões pessoais, especulações ou informações desatualizadas.
 """
+    
+    llm = get_llm("search")
     result = llm.invoke(prompt)
     state["search_macro"] = result.content
     print(result.content)
