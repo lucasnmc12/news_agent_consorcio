@@ -12,3 +12,6 @@ wheels/
 
 # Credenciais de acesso
 .env 
+
+
+.github/

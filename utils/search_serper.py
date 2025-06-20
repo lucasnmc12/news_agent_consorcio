@@ -3,7 +3,9 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+if not os.getenv("SERPER_API_KEY"):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
@@ -16,6 +18,12 @@ def buscar_noticias_serper(query, max_results=5):
     :param max_results: Quantidade máxima de resultados (máximo 10 na API gratuita)
     :return: Lista de dicionários com título, url e snippet
     """
+
+    # 🚩 Verifica se a API Key existe
+    if not SERPER_API_KEY:
+        print("⚠️ SERPER_API_KEY não configurada no .env ou incorreta.")
+        return []
+    
     url = "https://google.serper.dev/search"
 
     headers = {
