@@ -7,7 +7,7 @@ import os
 load_dotenv() # GROQ_API_KEY
 # GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 # GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY_LUCAS")
 
 
 
@@ -21,7 +21,7 @@ LLM_CONFIG = {
 
 def get_llm(task: str):
     model = LLM_CONFIG.get(task, "gemini-1.5-flash")
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = GEMINI_API_KEY
 
     if api_key is None:
         raise Exception("🚨 GEMINI_API_KEY não encontrado. Verifique seu arquivo .env!")

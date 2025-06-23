@@ -1,4 +1,4 @@
-from utils.search_ddgs import buscar_noticias, formatar_resultados
+# from utils.search_ddgs import buscar_noticias, formatar_resultados
 from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
 from utils.llm_factory import get_llm
 from datetime import datetime

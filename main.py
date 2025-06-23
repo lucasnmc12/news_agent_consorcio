@@ -16,6 +16,9 @@ graph = workflow.compile(checkpointer=checkpointer)
 # Identificador para o fluxo de execução (obrigatório com checkpointer)
 config = {"configurable": {"thread_id": "thread-editorial-001"}}
 
+# Captura a query do usuário
+# query_usuario = input("📝 Sobre qual tema você quer gerar o relatório? ")
+
 # Estado inicial
 state = {}
 
