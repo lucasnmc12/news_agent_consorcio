@@ -42,7 +42,9 @@ def buscar_noticias_serper(query, max_results=5):
     )
 
     payload = {
-        "q": query_final
+        "q": query_final,
+        "gl": "br",       # Geolocalização Brasil
+        "hl": "pt-br",    # Idioma português
     }
 
     response = requests.post(url, headers=headers, json=payload)
