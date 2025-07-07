@@ -38,6 +38,7 @@ def buscar_noticias_serper(query, max_results=5):
         f"site:g1.globo.com OR site:estadao.com.br OR site:valor.globo.com "
         f"OR site:oglobo.globo.com OR site:exame.com OR site:cnnbrasil.com.br "
         f"OR site:abac.org.br "
+        f"OR site:bcb.gov.br/noticias"
         f"{datetime.now().strftime('%B %Y')} Brasil"
     )
 

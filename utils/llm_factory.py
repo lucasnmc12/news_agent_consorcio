@@ -12,15 +12,15 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY_LUCAS")
 
 
 LLM_CONFIG = {
-    "search": "gemini-1.5-flash",
-    "merge": "gemini-1.5-flash",
-    "review": "gemini-1.5-flash",
-    "formatting": "gemini-1.5-flash"
+    "search": "gemini-2.5-flash",
+    "merge": "gemini-2.5-flash",
+    "review": "gemini-2.5-flash",
+    "formatting": "gemini-2.5-flash"
 }
 
 
 def get_llm(task: str):
-    model = LLM_CONFIG.get(task, "gemini-1.5-flash")
+    model = LLM_CONFIG.get(task, "gemini-2.5-flash")
     api_key = GEMINI_API_KEY
 
     if api_key is None:

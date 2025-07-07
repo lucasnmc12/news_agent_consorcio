@@ -11,7 +11,7 @@ def format_editorial(state):
     bcb = state.get('search_bcb', '')
 
     prompt = f"""
-        Você é um editor sênior responsável por preparar **relatórios informativos semanais**, voltados à diretoria da empresa "Multimarcas Consórcios" do setor de consórcios.
+        Você é um editor sênior responsável por preparar **relatórios informativos semanais**, voltados ao setor da Controadoria da empresa "Multimarcas Consórcios" do setor de consórcios.
 
         A seguir está um conteúdo consolidado com as principais notícias econômicas da semana, separadas por temas. Sua tarefa é **formatar esse conteúdo como um relatório semanal profissional**, com clareza, estrutura lógica e linguagem analítica.
 
@@ -21,9 +21,9 @@ def format_editorial(state):
 
         - Adicione um **título institucional** ao relatório.
         - Inclua uma **introdução breve**, explicando o objetivo do relatório e o período analisado.
-        - Após a introdução, insira o **resumo geral do conteúdo** conforme fornecido abaixo.
+        - Após a introdução, insira um **resumo geral do conteúdo** com base no fornecido abaixo.
 
-        ### 🔹 Resumo Consolidado:
+        ### 🔹 Resumo Base:
         {merged}
 
         - Em seguida, apresente o conteúdo detalhado das notícias, organizando em **microsessões** com **títulos descritivos e curtos** (ex.: "Alta da Selic", "Dólar em Alta", "Consórcios em Crescimento").
@@ -32,7 +32,16 @@ def format_editorial(state):
         2. **Mercado de Consórcios**
         3. **Banco Central**
 
-        - O texto deve ser **claro, objetivo, detalhado e com linguagem profissional e analítica.**
+        - IMPORTANTE: Sempre que possível, **relacione os eventos macroeconômicos com o impacto potencial ou real no mercado de consórcios**, como efeitos sobre o poder de compra dos consumidores, custo do crédito, confiança do mercado, entre outros.
+
+        - IMPORTANTE: 
+        - O texto deve seguir os **princípios de brevidade inteligente**:
+        - Clareza: linguagem simples e direta.
+        - Objetividade: sem redundâncias ou floreios.
+        - Precisão: palavras exatas, com foco no essencial.
+        - Impacto: destaque os pontos críticos e relevantes para a tomada de decisão.
+        
+
         - Finalize com uma **conclusão executiva**, destacando os principais aprendizados ou sinais de alerta da semana.
 
         ---
@@ -41,9 +50,8 @@ def format_editorial(state):
 
         - **Não inclua links no corpo do texto.**
         - Ao final do relatório, adicione uma seção chamada **"Fontes e Links"**.
-        - Liste os links utilizados em ordem numérica ([1], [2], [3]...), com o título da notícia ou um pequeno resumo + link clicável em cada linha.
-        - * Cada link deve estar em uma linha separada, com quebra de linha visível.* ATENÇÃO
-        - Sempre que possível, associe os dados mencionados no relatório às suas fontes numeradas.
+        - Liste os links utilizados em ordem numérica ([1], [2], [3]...)
+        - IMPORTANTE: * Cada link deve estar em uma linha separada, com quebra de linha visível.* ATENÇÃO
 
         ---
 
@@ -58,6 +66,7 @@ def format_editorial(state):
         **3. Banco Central:**  
         {bcb}
         """
+
 
     result = llm.invoke(prompt)
 

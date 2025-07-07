@@ -11,7 +11,7 @@ mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 
 def search_consorcios(state):
     """Busca e gera relatório sobre o mercado de consórcios"""
-    query = " mercado de consórcios financiamento taxas inadimplência últimas notícias Brasil"
+    query = " mercado de consórcios últimas notícias Brasil"
 
     noticias = buscar_noticias_serper(query)
 
