@@ -18,14 +18,24 @@ def buscar_noticias_gemini(query: str) -> str:
 
     prompt = f"""
     Hoje é {datetime.now().strftime('%d/%m/%Y')}.
-    Pesquise na web (usando a ferramenta de busca) sobre: {query}.
+    Pesquise na web (usando a ferramenta de busca) notícias de até no máximo 8 dias desde a sua publicação sobre: {query}.
+    Essas notícias serão utilizadas em um **relatório corporativo** para uma empresa do setor de consórcios, portanto devem conter **informações úteis para análise estratégica**, como:
+    - comportamento do mercado
+    - inadimplência
+    - crescimento do setor
+    - mudanças regulatórias
+    - impacto da Selic
+    - ações do Banco Central ou da ABAC
+    - fraudes ou problemas estruturais no setor
     Use fontes confiáveis como g1.globo.com, valor.globo.com, cnnbrasil.com.br, exame.com, oglobo.globo.com, estadao.com.br, abac.org.br e bcb.gov.br.
     
-    Para cada uma das 3 notícias mais relevantes:
-    - Forneça um **título**
-    - Um **resumo profissional e informativo**
-    - A **fonte (ex: G1, Valor Econômico)**
-    - E o **link da notícia**.
+    O objetivo é apenas retornar as notícias de forma fiel e detalhada, como foram publicadas pelas fontes.
+
+    Para cada notícia:
+    - Forneça o **título original**
+    - Um **resumo completo e fiel ao conteúdo publicado**, sem reescrever ou adaptar o estilo
+    - A **fonte original** (ex: G1, Valor Econômico, Exame, etc.)
+    - E o **link direto** da notícia
     
     Responda diretamente no formato abaixo:
     ---

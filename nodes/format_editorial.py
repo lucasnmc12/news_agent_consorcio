@@ -28,7 +28,7 @@ def format_editorial(state):
 
         - Em seguida, apresente o conteúdo detalhado das notícias, organizando em **microsessões** com **títulos descritivos e curtos** (ex.: "Alta da Selic", "Dólar em Alta", "Consórcios em Crescimento").
         - Organize os tópicos por blocos temáticos, seguindo a ordem:
-        1. **Macroeconomia**
+        1. **Macroeconomia e seu impacto no nosso mercado**
         2. **Mercado de Consórcios**
         3. **Banco Central**
 

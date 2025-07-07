@@ -1,5 +1,6 @@
 from utils.search_ddgs import buscar_noticias, formatar_resultados
 from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
+from searcher_gemini import buscar_noticias_gemini
 from utils.llm_factory import get_llm
 from datetime import datetime
 from dotenv import load_dotenv
@@ -11,14 +12,14 @@ mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 
 def search_macro(state):
     """Busca e gera relatório sobre a macroecônomia do país"""
-    query = " economia brasil inflação juros recessão últimas notícias Brasil"
-    noticias = buscar_noticias_serper(query)
+    query = " economia inflação juros recessão últimas notícias Brasil"
+    noticias = buscar_noticias_gemini(query)
 
     if not noticias:
         print("⚠️ Nenhuma notícia encontrada.")
         return state
 
-    resumo_links = formatar_resultados_serper(noticias)
+    resumo_links = noticias
 
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 
@@ -26,7 +27,7 @@ def search_macro(state):
         Data de execução do relatório: {data_execucao}
         Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
 
-        Com base nas notícias dos últimos 15 dias sobre **indicadores macroeconômicos no Brasil**, elabore um relatório profissional:
+        Com base nas notícias publicadas na última semana sobre **indicadores macroeconômicos no Brasil**, elabore um relatório profissional:
 
         {resumo_links}
         Dê foco especial a indicadores como inflação, PIB, taxa de juros, desemprego e câmbio, bem como decisões de política monetária, projeções econômicas e eventos que possam impactar o sistema financeiro e o setor de consórcios.

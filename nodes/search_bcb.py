@@ -1,5 +1,7 @@
 from utils.search_ddgs import buscar_noticias, formatar_resultados
 from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
+from searcher_gemini import buscar_noticias_gemini
+from searcher_gemini import buscar_noticias_gemini
 from utils.llm_factory import get_llm
 from datetime import datetime
 from tavily import TavilyClient
@@ -12,24 +14,21 @@ mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 
 def search_bcb(state):
     """Busca e gera relatório sobre Banco Central"""
-    query = """Banco Central do Brasil"""
-    noticias = buscar_noticias_serper(query)
+    query = """Banco Central do Brasil últimas notícias"""
+    noticias = buscar_noticias_gemini(query)
 
     if not noticias:
         print("⚠️ Nenhuma notícia encontrada.")
         return state
 
-    resumo_links = formatar_resultados_serper(noticias)
+    resumo_links = noticias
 
     data_execucao = datetime.now().strftime("%d/%m/%Y")
     
     prompt = f"""
 Data de execução do relatório: {data_execucao}
 
-Você é um analista econômico responsável por elaborar relatórios informativos para a diretoria de uma empresa de consórcios.
-
-Com base nas notícias dos últimos 15 dias sobre o **Banco Central do Brasil**, elabore um relatório profissional:
-
+Com base nas notícias publicadas na última semana sobre o **Banco Central do Brasil**, elabore um panorama atualizado sobre o Banco Central do Brasil:
 {resumo_links}
 
 Dê foco especial a decisões, regulamentações, comunicados oficiais, mudanças na **taxa Selic**, projeções econômicas e quaisquer medidas que possam impactar o mercado financeiro ou o setor de consórcios.

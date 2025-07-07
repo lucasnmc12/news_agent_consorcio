@@ -1,5 +1,6 @@
 # from utils.search_ddgs import buscar_noticias, formatar_resultados
 from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
+from searcher_gemini import buscar_noticias_gemini
 from utils.llm_factory import get_llm
 from datetime import datetime
 from dotenv import load_dotenv
@@ -13,14 +14,14 @@ def search_consorcios(state):
     """Busca e gera relatório sobre o mercado de consórcios"""
     query = " mercado de consórcios últimas notícias Brasil"
 
-    noticias = buscar_noticias_serper(query)
+    noticias = buscar_noticias_gemini(query)
 
     if not noticias:
         mensagem = "⚠️ Nenhuma notícia encontrada sobre consórcios."
         print(mensagem)
         return {"search_consorcios": mensagem}
 
-    resumo_links = formatar_resultados_serper(noticias)
+    resumo_links = noticias
 
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 
