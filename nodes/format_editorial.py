@@ -11,61 +11,52 @@ def format_editorial(state):
     bcb = state.get('search_bcb', '')
 
     prompt = f"""
-        Você é um editor sênior responsável por preparar **relatórios informativos semanais**, voltados ao setor da Controadoria da empresa "Multimarcas Consórcios" do setor de consórcios.
+            Você é um editor sênior responsável por preparar **relatórios informativos semanais**, voltados ao setor da Controladoria da empresa "Multimarcas Consórcios", no segmento de consórcios.
 
-        A seguir está um conteúdo consolidado com as principais notícias econômicas da semana, separadas por temas. Sua tarefa é **formatar esse conteúdo como um relatório semanal profissional**, com clareza, estrutura lógica e linguagem analítica.
+            A seguir está um conteúdo consolidado com as principais notícias econômicas da semana, separadas por temas. Sua tarefa é **formatar esse conteúdo como um relatório semanal profissional**, com linguagem analítica, clara e concisa.
 
-        ---
+            ---
 
-        ## 📌 Instruções obrigatórias:
+            ## 📌 Instruções obrigatórias:
 
-        - Adicione um **título institucional** ao relatório.
-        - Inclua uma **introdução breve**, explicando o objetivo do relatório e o período analisado.
-        - Após a introdução, insira um **resumo geral do conteúdo** com base no fornecido abaixo.
+            - Adicione um **título institucional** ao relatório.
 
-        ### 🔹 Resumo Base:
-        {merged}
+            - Em seguida, apresente o conteúdo detalhado das notícias, organizando em **microsessões** com **títulos curtos e descritivos**.
+            - Cada título de seção deve ser **clicável**, contendo o **link da fonte mais relevante incorporado ao título** (em Markdown: `[Título](link)`).
+            - Não repita o link no corpo do texto ou em seção separada.
 
-        - Em seguida, apresente o conteúdo detalhado das notícias, organizando em **microsessões** com **títulos descritivos e curtos** (ex.: "Alta da Selic", "Dólar em Alta", "Consórcios em Crescimento").
-        - Organize os tópicos por blocos temáticos, seguindo a ordem:
-        1. **Macroeconomia e seu impacto no nosso mercado**
-        2. **Mercado de Consórcios**
-        3. **Banco Central**
+            - Organize os tópicos por blocos temáticos, seguindo a ordem:
+            1. **Macroeconomia e seu impacto no nosso mercado**
+            2. **Mercado de Consórcios**
+            3. **Banco Central**
 
-        - IMPORTANTE: Sempre que possível, **relacione os eventos macroeconômicos com o impacto potencial ou real no mercado de consórcios**, como efeitos sobre o poder de compra dos consumidores, custo do crédito, confiança do mercado, entre outros.
+            - O conteúdo deve ser **menos descritivo** e **mais analítico e objetivo**:
+            - Evite repetir detalhes óbvios ou generalidades.
+            - Vá direto ao ponto com foco em impactos e insights.
+            - Sempre que possível, relacione com o setor de consórcios: poder de compra, custo do crédito, mercado consumidor, etc.
 
-        - IMPORTANTE: 
-        - O texto deve seguir os **princípios de brevidade inteligente**:
-        - Clareza: linguagem simples e direta.
-        - Objetividade: sem redundâncias ou floreios.
-        - Precisão: palavras exatas, com foco no essencial.
-        - Impacto: destaque os pontos críticos e relevantes para a tomada de decisão.
-        
+            - Siga os princípios da **brevidade inteligente**:
+            - Clareza: linguagem direta, sem jargões desnecessários.
+            - Objetividade: evite redundâncias e floreios.
+            - Precisão: use os termos mais adequados para o contexto.
+            - Impacto: destaque o que é crítico para a tomada de decisão.
 
-        - Finalize com uma **conclusão executiva**, destacando os principais aprendizados ou sinais de alerta da semana.
+            - Finalize com uma **Conclusão Executiva**, resumindo os principais alertas ou aprendizados da semana de forma estratégica.
 
-        ---
+            ---
 
-        ## 🔗 Sobre os links:
+            ## 📰 Conteúdo base para detalhamento:
 
-        - **Não inclua links no corpo do texto.**
-        - Ao final do relatório, adicione uma seção chamada **"Fontes e Links"**.
-        - Liste os links utilizados em ordem numérica ([1], [2], [3]...)
-        - IMPORTANTE: * Cada link deve estar em uma linha separada, com quebra de linha visível.* ATENÇÃO
+            **1. Macroeconomia:**  
+            {macro}
 
-        ---
+            **2. Mercado de Consórcios:**  
+            {consorcios}
 
-        ## 📰 Conteúdo base para detalhamento:
+            **3. Banco Central:**  
+            {bcb}
+            """
 
-        **1. Macroeconomia:**  
-        {macro}
-
-        **2. Mercado de Consórcios:**  
-        {consorcios}
-
-        **3. Banco Central:**  
-        {bcb}
-        """
 
 
     result = llm.invoke(prompt)

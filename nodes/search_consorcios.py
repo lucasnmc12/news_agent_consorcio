@@ -12,16 +12,16 @@ mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 
 def search_consorcios(state):
     """Busca e gera relatório sobre o mercado de consórcios"""
-    query = " mercado de consórcios últimas notícias Brasil"
+    query = "mercado de consórcios últimas notícias Brasil"
 
-    noticias = buscar_noticias_gemini(query)
+    noticias = buscar_noticias_serper(query)
 
     if not noticias:
         mensagem = "⚠️ Nenhuma notícia encontrada sobre consórcios."
         print(mensagem)
         return {"search_consorcios": mensagem}
 
-    resumo_links = noticias
+    resumo_links = formatar_resultados_serper(noticias)
 
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 

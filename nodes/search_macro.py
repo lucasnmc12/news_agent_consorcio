@@ -13,13 +13,13 @@ mes_atual = datetime.now().strftime('%B %Y')  # Junho 2025
 def search_macro(state):
     """Busca e gera relatório sobre a macroecônomia do país"""
     query = " economia inflação juros recessão últimas notícias Brasil"
-    noticias = buscar_noticias_gemini(query)
+    noticias = buscar_noticias_serper(query)
 
     if not noticias:
         print("⚠️ Nenhuma notícia encontrada.")
         return state
 
-    resumo_links = noticias
+    resumo_links = formatar_resultados_serper(noticias)
 
     data_execucao = datetime.now().strftime("%d/%m/%Y")
 
