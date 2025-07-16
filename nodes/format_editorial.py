@@ -41,7 +41,8 @@ def format_editorial(state):
             - Precisão: use os termos mais adequados para o contexto.
             - Impacto: destaque o que é crítico para a tomada de decisão.
 
-            - Finalize com uma **Conclusão Executiva**, resumindo os principais alertas ou aprendizados da semana de forma estratégica.
+            - Finalize com uma **Conclusão Executiva**, resumindo os principais alertas ou aprendizados da semana de forma estratégica e resumida.
+            - Nao assine o relatorio
 
             ---
 
