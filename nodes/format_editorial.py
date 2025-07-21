@@ -11,52 +11,56 @@ def format_editorial(state):
     bcb = state.get('search_bcb', '')
 
     prompt = f"""
-            Você é um editor sênior responsável por preparar **relatórios informativos semanais**, voltados ao setor da Controladoria da empresa "Multimarcas Consórcios", no segmento de consórcios.
+                Você é um assistente editorial especializado em geração de relatórios analíticos a partir de notícias econômicas.
 
-            A seguir está um conteúdo consolidado com as principais notícias econômicas da semana, separadas por temas. Sua tarefa é **formatar esse conteúdo como um relatório semanal profissional**, com linguagem analítica, clara e concisa.
+                A seguir está um conteúdo já consolidado e bem estruturado, chamado de **pré-relatório**. Seu papel é **refinar** esse conteúdo para transformá-lo no **relatório final** que se chama "Na Mira da Controladoria".
 
-            ---
+                ⚠️ Muito importante: **não reescreva tudo do zero**. Mantenha a maioria do conteúdo intacto, apenas fazendo *lapidações inteligentes*, conforme as diretrizes abaixo.
 
-            ## 📌 Instruções obrigatórias:
+                ---
 
-            - Adicione um **título institucional** ao relatório.
+                ## 🎯 Objetivo do Relatório Final
 
-            - Em seguida, apresente o conteúdo detalhado das notícias, organizando em **microsessões** com **títulos curtos e descritivos**.
-            - Cada título de seção deve ser **clicável**, contendo o **link da fonte mais relevante incorporado ao título** (em Markdown: `[Título](link)`).
-            - Não repita o link no corpo do texto ou em seção separada.
+                Apresentar o conteúdo do pré-relatório de forma clara, impactante e pronta para ser entregue a um público executivo interessado no setor de consórcios e macroeconomia.
 
-            - Organize os tópicos por blocos temáticos, seguindo a ordem:
-            1. **Macroeconomia e seu impacto no nosso mercado**
-            2. **Mercado de Consórcios**
-            3. **Banco Central**
+                ---
 
-            - O conteúdo deve ser **menos descritivo** e **mais analítico e objetivo**:
-            - Evite repetir detalhes óbvios ou generalidades.
-            - Vá direto ao ponto com foco em impactos e insights.
-            - Sempre que possível, relacione com o setor de consórcios: poder de compra, custo do crédito, mercado consumidor, etc.
+                ## ✏️ O que você deve fazer com o conteúdo:
 
-            - Siga os princípios da **brevidade inteligente**:
-            - Clareza: linguagem direta, sem jargões desnecessários.
-            - Objetividade: evite redundâncias e floreios.
-            - Precisão: use os termos mais adequados para o contexto.
-            - Impacto: destaque o que é crítico para a tomada de decisão.
+                1. **Lapidar o texto original (pré-relatório)** sem descaracterizar:
+                - Corrija pequenos vícios de linguagem e torne a leitura mais fluida.
+                - Faça ajustes de tom e clareza, mantendo o estilo direto e analítico.
 
-            - Finalize com uma **Conclusão Executiva**, resumindo os principais alertas ou aprendizados da semana de forma estratégica e resumida.
-            - Nao assine o relatorio
+                2. **Transforme cada título de tópico em um link clicável:**
+                - Encontre a **fonte mais relevante** de cada notícia/tópico.
+                - Formate o título como `[Título do tópico](link)` em Markdown.
+                - ❗️Não repita o link no corpo nem em seção separada.
 
-            ---
+                3. **Conecte com o setor de consórcios sempre que possível:**
+                - Comente sobre impacto no poder de compra, custo do crédito, confiança do consumidor, inflação, Selic, inadimplência, etc.
 
-            ## 📰 Conteúdo base para detalhamento:
+                4. **Se a notícia tiver mais de 15 dias**, insira uma observação indicando não ser uma notícia recente:
+                - Use tom informativo e amigável:
 
-            **1. Macroeconomia:**  
-            {macro}
+                5. **Siga os princípios da brevidade inteligente:**
+                - **Clareza:** linguagem direta, sem jargões desnecessários.
+                - **Objetividade:** evite redundâncias e floreios.
+                - **Precisão:** use os termos mais adequados ao contexto.
+                - **Impacto:** destaque o que é mais relevante para tomada de decisão.
 
-            **2. Mercado de Consórcios:**  
-            {consorcios}
+                6. **Não assine o relatório.** Nunca inclua rodapés com autor ou gerador de IA.
 
-            **3. Banco Central:**  
-            {bcb}
-            """
+                ---
+
+                ## 📝 Pré-relatório (base para o trabalho):
+
+                {merged}
+
+                ---
+
+                Agora, com base no pré-relatório acima, gere o relatório final lapidado e formatado.
+                """
+
 
 
 

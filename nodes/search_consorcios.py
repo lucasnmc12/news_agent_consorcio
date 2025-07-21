@@ -45,6 +45,7 @@ def search_consorcios(state):
         - **Conteúdo**: [conteúdo detalhado em linguagem formal e acessível]
         - **Fonte**: Nome da fonte  
         - **Link**: URL da notícia 
+        - **Data**: Data da notícia 
 
         Evite conteúdos opinativos ou desatualizados.
         """

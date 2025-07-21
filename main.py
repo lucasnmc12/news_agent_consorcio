@@ -4,7 +4,7 @@ from langgraph.types import Command
 from graph_definition import workflow
 from langgraph.checkpoint.memory import InMemorySaver
 import json
-from salvar_relatorio_pdf import salvar_como_markdown, converter_md_para_html, salvar_pdf
+from formatacao.salvar_relatorio_pdf import salvar_como_markdown, converter_md_para_html, salvar_pdf
 from datetime import datetime
 
 

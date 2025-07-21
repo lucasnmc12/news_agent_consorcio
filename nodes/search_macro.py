@@ -42,6 +42,7 @@ def search_macro(state):
         - **Conteúdo**: [conteúdo detalhado em linguagem formal e acessível]
         - **Fonte**: Nome da fonte  
         - **Link**: URL da notícia 
+        - **Data**: Data da notícia 
 
         Evite opiniões pessoais, especulações ou informações desatualizadas.
 """

@@ -4,7 +4,7 @@ llm = get_llm("merge")
 
 def merged_content(state):
     prompt = f"""
-        Você é um editor sênior responsável por preparar um **pré-relatório executivo semanal** para a diretoria de uma empresa do setor de consórcios.
+        Você é um editor sênior responsável por preparar um **pré-relatório executivo semanal** para a controladoria de uma empresa do setor de consórcios.
 
         Sua tarefa é **selecionar, organizar e consolidar as informações mais relevantes** a partir dos três blocos temáticos abaixo, unindo os dados em um único texto separado em 3 blocos: Macoreconomia, Mercado de consórcios e Banco Central, bem estruturado e pronto para ser formatado em um relatório editorial posterior.
 

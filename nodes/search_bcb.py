@@ -31,7 +31,7 @@ def search_bcb(state):
         Com base nas notícias publicadas na última semana sobre o **Banco Central do Brasil**, elabore um panorama atualizado sobre o Banco Central do Brasil:
         {resumo_links}
 
-        Dê foco especial a decisões, regulamentações, comunicados oficiais, mudanças na **taxa Selic**, projeções econômicas e quaisquer medidas que possam impactar o mercado financeiro ou o setor de consórcios.
+        Dê foco especial a decisões, regulamentações, comunicados oficiais, projeções econômicas e quaisquer medidas que possam impactar o mercado financeiro ou o setor de consórcios.
 
         **Requisitos obrigatórios**:
                 - Cite **explicitamente a fonte confiável** da informação (ex: ABAC, Valor Econômico, G1, Estadão, Exame, etc).
@@ -43,6 +43,7 @@ def search_bcb(state):
                 - **Conteúdo**: [conteúdo detalhado em linguagem formal e acessível]
                 - **Fonte**: Nome da fonte  
                 - **Link**: URL da notícia 
+                - **Data**: Data da notícia 
 
         Evite opiniões pessoais, especulações ou informações desatualizadas.
         """
