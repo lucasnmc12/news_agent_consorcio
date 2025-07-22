@@ -27,28 +27,33 @@ def format_editorial(state):
 
                 ## ✏️ O que você deve fazer com o conteúdo:
 
-                1. **Lapidar o texto original (pré-relatório)** sem descaracterizar:
+                1. **Resuma cada tópico com inteligência:**
+                - Reduza a extensão dos textos, sem perder o significado, a mensagem ou o contexto principal.
+                - Elimine redundâncias, exemplos desnecessários e explicações óbvias.
+                - Mantenha o que for essencial para a análise e a tomada de decisão.
+
+                2. **Lapidar o texto original (pré-relatório)** sem descaracterizar:
                 - Corrija pequenos vícios de linguagem e torne a leitura mais fluida.
                 - Faça ajustes de tom e clareza, mantendo o estilo direto e analítico.
 
-                2. **Transforme cada título de tópico em um link clicável:**
+                3. **Transforme cada título de tópico em um link clicável:**
                 - Encontre a **fonte mais relevante** de cada notícia/tópico.
                 - Formate o título como `[Título do tópico](link)` em Markdown.
                 - ❗️Não repita o link no corpo nem em seção separada.
 
-                3. **Conecte com o setor de consórcios sempre que possível:**
+                4. **Conecte com o setor de consórcios sempre que possível:**
                 - Comente sobre impacto no poder de compra, custo do crédito, confiança do consumidor, inflação, Selic, inadimplência, etc.
 
-                4. **Se a notícia tiver mais de 15 dias**, insira uma observação indicando não ser uma notícia recente:
+                5. **Se a notícia tiver mais de 15 dias**, insira uma observação indicando não ser uma notícia recente:
                 - Use tom informativo e amigável:
 
-                5. **Siga os princípios da brevidade inteligente:**
+                6. **Siga os princípios da brevidade inteligente:**
                 - **Clareza:** linguagem direta, sem jargões desnecessários.
                 - **Objetividade:** evite redundâncias e floreios.
                 - **Precisão:** use os termos mais adequados ao contexto.
                 - **Impacto:** destaque o que é mais relevante para tomada de decisão.
 
-                6. **Não assine o relatório.** Nunca inclua rodapés com autor ou gerador de IA.
+                7. **Não assine o relatório.** Nunca inclua rodapés com autor ou gerador de IA.
 
                 ---
 

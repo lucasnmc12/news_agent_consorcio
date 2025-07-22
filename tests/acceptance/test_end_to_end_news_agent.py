@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
 from graph_definition import workflow
-from salvar_relatorio_pdf import salvar_como_markdown, converter_md_para_html, salvar_pdf
+from formatacao.salvar_relatorio_pdf import salvar_como_markdown, converter_md_para_html, salvar_pdf
 import os
 
 
