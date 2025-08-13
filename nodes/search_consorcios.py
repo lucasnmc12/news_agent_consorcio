@@ -28,27 +28,33 @@ def search_consorcios(state):
 
     prompt = f"""
         Data de execução do relatório: {data_execucao}
-        Você é um analista econômico responsável por elaborar relatórios para a diretoria de uma empresa do setor de consórcios.
 
-        Com base nas notícias publicadas na última semana sobre o **mercado de consórcios no Brasil**.
+        Você é um analista econômico. Sua tarefa é ler o material abaixo (trechos e links de notícias sobre o mercado de consórcios no Brasil) e produzir APENAS um resumo executivo com os pontos mais relevantes da última semana.
+
+        CONTEÚDO A ANALISAR:
         {resumo_links}
 
-        Dê foco especial a tendências de crescimento, comportamento dos consumidores, mudanças regulatórias, oportunidades de mercado, fusões/aquisições, fraudes, novas tecnologias e qualquer fator relevante que impacte o setor.
+        REGRAS (aplique todas):
+        - Considere SOMENTE notícias publicadas nos últimos 8 dias em fontes confiáveis (Valor, G1, Estadão, Exame, CNN Brasil, InfoMoney, ABAC, Banco Central). Se a data for anterior, ignore.
+        - Descarte matérias patrocinadas/“Dino”, publieditoriais ou republicações; prefira a fonte original.
+        - Elimine duplicatas (mesma pauta/mesmos dados com outra manchete); mantenha a versão mais completa e clara.
+        - Destaque só o que muda decisão: crescimento/setor, comportamento do consumidor, mudanças regulatórias, Selic/BCB, fraudes, fusões/aquisições, tecnologia/operacional.
+        - Seja factual e neutro. Sem opinião. Sem floreios. Sem reescrever o estilo da fonte.
 
-        **Requisitos obrigatórios**:
-        - Cite **explicitamente a fonte confiável** da informação (ex: ABAC, Valor Econômico, G1, Estadão, Exame, etc).
-        - Apresente os dados de forma clara, detalhada e com linguagem profissional.
-        - Separe as notícias por tópicos ou subtítulos, se necessário.
+        FORMATO DE SAÍDA (máx. 8 itens):
+        Para cada item, use exatamente o bloco abaixo:
+        ---
+        - **Título**: <título original>
+        - **Achados principais**: <2–3 linhas com dados/conclusões verificáveis (percentuais, valores, datas, órgãos)>
+        - **Por que importa**: <1 linha conectando o fato ao setor de consórcios>
+        - **Fonte**: <nome da fonte>
+        - **Link**: <URL>
+        - **Data**: <AAAA-MM-DD>
+        ---
 
-        **Formato esperado por item**:
-        - **Título**: Título da notícia  
-        - **Conteúdo**: [conteúdo detalhado em linguagem formal e acessível]
-        - **Fonte**: Nome da fonte  
-        - **Link**: URL da notícia 
-        - **Data**: Data da notícia 
-
-        Evite conteúdos opinativos ou desatualizados.
+        Se não houver nada relevante/recente, responda apenas: "Sem novidades relevantes na última semana."
         """
+
 
     llm = get_llm("search")
     result = llm.invoke(prompt)
