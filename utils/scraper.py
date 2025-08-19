@@ -162,3 +162,42 @@ def debug_imprimir_noticias(
         count += 1
         if count >= n:
             break
+
+
+def _montar_corpus_para_llm(completos, parciais, preview_full=1200, preview_snip=300):
+    """
+    Constrói o conteúdo que a LLM vai ler, baseado no TEXTO EXTRAÍDO.
+    Mantém formato simples e citável.
+    """
+    blocos = []
+# Itens com TEXTO completo
+    for it in completos:
+        titulo = it.get("title") or it.get("titulo") or "(sem título)"
+        fonte  = it.get("source") or it.get("fonte") or ""
+        data   = it.get("date") or it.get("data") or ""
+        link   = it.get("link") or ""
+        texto  = (it.get("texto") or "").strip().replace("\r", " ")
+        trecho = texto[:preview_full] + ("…" if len(texto) > preview_full else "")
+        blocos.append(
+            f"- Título: {titulo}\n"
+            f"  Fonte: {fonte} | Data: {data}\n"
+            f"  Link: {link}\n"
+            f"  Conteúdo extraído (COMPLETO):\n  {trecho}\n"
+        )
+
+    # Itens só com SNIPPET
+    for it in parciais:
+        titulo = it.get("title") or it.get("titulo") or "(sem título)"
+        fonte  = it.get("source") or it.get("fonte") or ""
+        data   = it.get("date") or it.get("data") or ""
+        link   = it.get("link") or ""
+        snip   = (it.get("snippet") or "").strip().replace("\r", " ")
+        trecho = snip[:preview_snip] + ("…" if len(snip) > preview_snip else "")
+        blocos.append(
+            f"- Título: {titulo}\n"
+            f"  Fonte: {fonte} | Data: {data}\n"
+            f"  Link: {link}\n"
+            f"  Conteúdo extraído [SNIPPET]:\n  {trecho}\n"
+        )
+
+    return "\n".join(blocos)
