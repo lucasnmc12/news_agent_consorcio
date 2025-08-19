@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper, buscar_noticias_serper_bacen
 
-noticias = buscar_noticias_serper("Consorcios", max_results=3)
+noticias = buscar_noticias_serper("mercado de consorcio", max_results=3)
 
 vistos = set()
 limpas = []
@@ -43,8 +43,8 @@ for i in limpas:
         texto = extrair_texto(html, url_usada) if html else None
         if not texto or len(texto) < min_chars:
                texto = (i.get("snippet")or "").strip()
-        i ["texto"] = texto
-        i ["texto_completo"] = len(texto) >= min_chars
+        i["texto"] = texto
+        i["texto_completo"] = len(texto) >= min_chars
         i["scrape_url_usada"] = url_usada      # opcional: útil pra debug
 
 
