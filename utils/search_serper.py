@@ -1,4 +1,5 @@
 import requests
+import json
 from datetime import datetime
 import os
 from dotenv import load_dotenv
@@ -23,15 +24,8 @@ def buscar_noticias_serper(query, max_results=5):
     if not SERPER_API_KEY:
         print("⚠️ SERPER_API_KEY não configurada no .env ou incorreta.")
         return []
-    
-    url = "https://google.serper.dev/search"
 
-    headers = {
-        "X-API-KEY": SERPER_API_KEY,
-        "Content-Type": "application/json"
-    }
-
-    # 🔍 Inclui termos para foco no Brasil e em notícias oficiais
+# 🔍 Inclui termos para foco no Brasil e em notícias oficiais
     query_final = (
         f"{query} "
         f"(normativa OR regulamentação OR resolução OR comunicado OR decisão) "
@@ -39,26 +33,42 @@ def buscar_noticias_serper(query, max_results=5):
         f"OR site:oglobo.globo.com OR site:exame.com OR site:cnnbrasil.com.br "
         f"OR site:abac.org.br "
         f"OR site:bcb.gov.br/noticias"
-        f"{datetime.now().strftime('%B %Y')} Brasil"
+        # f"{datetime.now().strftime('%B %Y')} Brasil"  ## Filtr de data já aplicado
     )
+
+    url = "https://google.serper.dev/news"
 
     payload = {
         "q": query_final,
         "gl": "br",       # Geolocalização Brasil
-        "hl": "pt-br",    # Idioma português
+        "hl": "pt-br",  # Idioma português
+        "location": "Brazil",
+        "tbs": "qdr:w"   # Filtro para notícias da última semana
     }
 
-    response = requests.post(url, headers=headers, json=payload)
-    response.raise_for_status()
+    payload_json = json.dumps(payload)
 
-    resultados = response.json().get("organic", [])
+    headers = {
+        "X-API-KEY": SERPER_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.post(url, headers=headers, data=payload_json)
+        response.raise_for_status()
+        resultados = response.json().get("news", [])
+    except requests.RequestException as e:
+        print(f"⚠️ Erro na requisição: {e}")
+        return []
 
     noticias = []
     for item in resultados[:max_results]:
         noticias.append({
             "title": item.get("title"),
             "url": item.get("link"),
-            "content": item.get("snippet")
+            "content_inicio": item.get("snippet"),
+            "fonte": item.get("source"),
+            "data": item.get("date"),
         })
 
     return noticias
@@ -70,13 +80,17 @@ def formatar_resultados_serper(noticias):
     for n in noticias:
         titulo = n.get("title")
         url = n.get("url")
-        trecho = (n.get("content") or "").strip().replace("\n", " ")
+        data = n.get("data")
+        fonte = n.get("fonte")
+        trecho = (n.get("content_inicio") or "").strip().replace("\n", " ")
         dominio = url.split("/")[2].replace("www.", "") if url else "Fonte desconhecida"
 
         resumo += (
             f"- **Fonte**: {dominio}\n"
             f"  **Título**: {titulo}\n"
             f"  **Link**: {url}\n"
-            f"  **Resumo**: {trecho[:300]}...\n\n"
+            f"  **Data**: {data}\n"
+            f"  **Fonte_serper**: {fonte}\n"
+            f"  **Início da matéria**: {trecho[:300]}...\n\n"
         )
     return resumo
