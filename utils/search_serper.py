@@ -43,7 +43,7 @@ def buscar_noticias_serper(query, max_results=8):
         "gl": "br",       # Geolocalização Brasil
         "hl": "pt-br",  # Idioma português
         "location": "Brazil",
-        "tbs": "qdr:w"   # Filtro para notícias da última semana
+        "tbs": "qdr:m"   # Filtro para notícias da última semana
     }
 
     payload_json = json.dumps(payload)
