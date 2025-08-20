@@ -1,5 +1,5 @@
 # from utils.search_ddgs import buscar_noticias, formatar_resultados
-from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
+from utils.search_serper import buscar_noticias_serper_consorcio, formatar_resultados_serper
 from utils.llm_factory import get_llm
 from datetime import datetime
 import json
@@ -14,7 +14,7 @@ def search_consorcios(state):
     """Busca e gera relatório sobre o mercado de consórcios"""
     query = "mercado de consorcios"
 
-    noticias = buscar_noticias_serper(query)
+    noticias = buscar_noticias_serper_consorcio(query)
 
     if not noticias:
         mensagem = "⚠️ Nenhuma notícia encontrada sobre consórcios."

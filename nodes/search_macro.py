@@ -1,6 +1,5 @@
 from utils.search_ddgs import buscar_noticias, formatar_resultados
-from utils.search_serper import buscar_noticias_serper, formatar_resultados_serper
-from searcher_gemini import buscar_noticias_gemini
+from utils.search_serper import buscar_noticias_serper_macro, formatar_resultados_serper
 from utils.llm_factory import get_llm
 from datetime import datetime
 from dotenv import load_dotenv
@@ -16,7 +15,7 @@ def search_macro(state):
     """Busca e gera relatório sobre a macroecônomia do país"""
     query = " economia inflação juros recessão últimas notícias Brasil"
 
-    noticias = buscar_noticias_serper(query)
+    noticias = buscar_noticias_serper_macro(query)
 
     if not noticias:
         mensagem = "⚠️ Nenhuma notícia encontrada sobre macroeconomia."

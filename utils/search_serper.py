@@ -11,7 +11,7 @@ if not os.getenv("SERPER_API_KEY"):
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
 
-def buscar_noticias_serper(query, max_results=8):
+def buscar_noticias_serper(query, max_results=6):
     """
     Faz uma busca no Google usando a API do Serper.dev com foco no Brasil.
 
@@ -32,8 +32,128 @@ def buscar_noticias_serper(query, max_results=8):
         f"site:g1.globo.com OR site:estadao.com.br OR site:valor.globo.com "
         f"OR site:oglobo.globo.com OR site:exame.com OR site:cnnbrasil.com.br "
         f"OR site:abac.org.br "
-        f"OR site:bcb.gov.br/noticias"
-        #f"{datetime.now().strftime('%B %Y')} Brasil"  ## Filtr de data já aplicado
+    )
+
+    url = "https://google.serper.dev/news"
+
+    payload = {
+        "q": query_final,
+        "gl": "br",       # Geolocalização Brasil
+        "hl": "pt-br",  # Idioma português
+        "location": "Brazil",
+        "tbs": "qdr:m"   # Filtro para notícias da última semana
+    }
+
+    payload_json = json.dumps(payload)
+
+    headers = {
+        "X-API-KEY": SERPER_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.post(url, headers=headers, data=payload_json)
+        response.raise_for_status()
+        resultados = response.json().get("news", [])
+    except requests.RequestException as e:
+        print(f"⚠️ Erro na requisição: {e}")
+        return []
+
+    noticias = []
+    for item in resultados[:max_results]:
+        noticias.append({
+            "title": item.get("title"),
+            "link": item.get("link"),
+            "snippet": item.get("snippet"),
+            "source": item.get("source"),
+            "date": item.get("date"),
+        })
+
+    return noticias
+
+
+def buscar_noticias_serper_consorcio(query, max_results=6):
+    """
+    Faz uma busca no Google usando a API do Serper.dev com foco no Brasil.
+
+    :param query: Tema da busca
+    :param max_results: Quantidade máxima de resultados (máximo 10 na API gratuita)
+    :return: Lista de dicionários com título, url e snippet
+    """
+
+    # 🚩 Verifica se a API Key existe
+    if not SERPER_API_KEY:
+        print("⚠️ SERPER_API_KEY não configurada no .env ou incorreta.")
+        return []
+
+# 🔍 Inclui termos para foco no Brasil e em notícias oficiais
+    query_final = (
+        f"{query} "
+        #f"(normativa OR regulamentação OR resolução OR comunicado OR decisão) "
+        f"site:g1.globo.com OR site:estadao.com.br OR site:valor.globo.com "
+        f"OR site:oglobo.globo.com OR site:exame.com OR site:cnnbrasil.com.br "
+        f"OR site:abac.org.br "
+    )
+
+    url = "https://google.serper.dev/news"
+
+    payload = {
+        "q": query_final,
+        "gl": "br",       # Geolocalização Brasil
+        "hl": "pt-br",  # Idioma português
+        "location": "Brazil",
+        "tbs": "qdr:m"   # Filtro para notícias da última semana
+    }
+
+    payload_json = json.dumps(payload)
+
+    headers = {
+        "X-API-KEY": SERPER_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        response = requests.post(url, headers=headers, data=payload_json)
+        response.raise_for_status()
+        resultados = response.json().get("news", [])
+    except requests.RequestException as e:
+        print(f"⚠️ Erro na requisição: {e}")
+        return []
+
+    noticias = []
+    for item in resultados[:max_results]:
+        noticias.append({
+            "title": item.get("title"),
+            "link": item.get("link"),
+            "snippet": item.get("snippet"),
+            "source": item.get("source"),
+            "date": item.get("date"),
+        })
+
+    return noticias
+
+
+
+def buscar_noticias_serper_macro(query, max_results=8):
+    """
+    Faz uma busca no Google usando a API do Serper.dev com foco no Brasil.
+
+    :param query: Tema da busca
+    :param max_results: Quantidade máxima de resultados (máximo 10 na API gratuita)
+    :return: Lista de dicionários com título, url e snippet
+    """
+
+    # 🚩 Verifica se a API Key existe
+    if not SERPER_API_KEY:
+        print("⚠️ SERPER_API_KEY não configurada no .env ou incorreta.")
+        return []
+
+# 🔍 Inclui termos para foco no Brasil e em notícias oficiais
+    query_final = (
+        f"{query} "
+        #f"(normativa OR regulamentação OR resolução OR comunicado OR decisão) "
+        f"site:g1.globo.com OR site:estadao.com.br OR site:valor.globo.com "
+        f"OR site:oglobo.globo.com OR site:exame.com OR site:cnnbrasil.com.br "
     )
 
     url = "https://google.serper.dev/news"
@@ -88,15 +208,11 @@ def buscar_noticias_serper_bacen(query, max_results=8):
         return []
 
 # 🔍 Inclui termos para foco no Brasil e em notícias oficiais
-    query_final = (
-        f"""{query} 
-            site:bcb.gov.br intitle:(resolução OR circular OR comunicado OR copom OR selic OR "consulta pública")
-            site:bcb.gov.br inurl:/noticias (resolução OR circular OR comunicado OR copom OR selic OR pix OR "open finance")
-            site:bcb.gov.br (consórcio OR consórcios OR "sistema de consórcios")
-        """
-        
-        
-    )
+    query_final =  (f"{query} " 
+    f"(normativa OR regulamentação OR resolução OR comunicado OR decisão) " 
+    f"OR site:abac.org.br " 
+    f"OR site:bcb.gov.br/noticias " 
+    f"OR site:g1.globo.com/tudo-sobre/banco-central-do-brasil" )
 
     url = "https://google.serper.dev/news"
 

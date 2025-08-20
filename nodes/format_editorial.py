@@ -1,6 +1,9 @@
 from utils.llm_factory import get_llm
+from datetime import datetime, date
 
 llm = get_llm("formating")
+
+data_hoje = datetime.now().strftime('%d de %B de %Y') 
 
 def format_editorial(state):
     print("Formatando o texto para editorial final...")
@@ -11,59 +14,79 @@ def format_editorial(state):
     bcb = state.get('search_bcb', '')
 
     prompt = f"""
-                Você é um assistente editorial especializado em geração de relatórios analíticos a partir de notícias econômicas.
+                Você é um editor profissional. Formate o conteúdo APROVADO abaixo em um RELATÓRIO FINAL para o gerente de uma administradora de consórcios.
 
-                A seguir está um conteúdo já consolidado e bem estruturado, chamado de **pré-relatório**. Seu papel é **refinar** esse conteúdo para transformá-lo no **relatório final** que se chama "Na Mira da Controladoria".
+        REGRAS DE FIDELIDADE (OBRIGATÓRIAS):
+        - NÃO adicione, omita ou altere informações. NÃO inclua novas fontes ou números.
+        - Mantenha todos os itens aprovados, apenas melhorando clareza, ortografia e padronização.
+        - Preserve a ordem por TEMA (BCB, Macroeconomia, Consórcios). Dentro de cada tema, use a ordem que vier no conteúdo aprovado.
+        - Se algum item não tiver data, deixe em branco (não invente). Se não houver link, não crie link.
 
-                ⚠️ Muito importante: **não reescreva tudo do zero**. Mantenha a maioria do conteúdo intacto, apenas fazendo *lapidações inteligentes*, conforme as diretrizes abaixo.
+        REGRAS DE FORMATAÇÃO:
+        - Saída em **Markdown**.
+        - Título de cada notícia deve ser **clicável**: `### [<título>](<link>) — *<fonte>*, <data>`
+        - Logo abaixo do título, use subblocos padronizados:
+        - **Essência (fatos verificados):**
+            - Converta `achados_principais` em 2–5 bullets, sem reescrever números.
+        - **Por que importa (setor de consórcios):**
+            - Traga o texto aprovado em 1–2 linhas (sem extrapolar).
+        - **Relevância:** `<valor de 0.00 a 1.00>`
 
-                ---
+        - Padronizações:
+        - Datas no formato DD-MM-AAAA quando disponíveis no conteúdo aprovado.
+        - Números, percentuais e órgãos devem aparecer como no aprovado (sem arredondar ou reinterpretar).
+        - Links sempre entre `()` no título.
 
-                ## 🎯 Objetivo do Relatório Final
+        ESTRUTURA DO RELATÓRIO:
 
-                Apresentar o conteúdo do pré-relatório de forma clara, impactante e pronta para ser entregue a um público executivo interessado no setor de consórcios e macroeconomia.
+        # Relatório Final — Inteligência de Mercado (Consórcios)
+        **Empresa:** Multimarcas Consórcios 
+        **Data:** {data_hoje}
 
-                ---
+        ## Sumário Executivo
+        - Em 4–6 linhas, descreva APENAS com base no conteúdo aprovado os principais riscos, oportunidades e pontos de atenção para a gestão. Não inclua nada que não esteja explícito nos itens.
 
-                ## ✏️ O que você deve fazer com o conteúdo:
+        ## Banco Central (BCB)
+        > Decisões/atos/comunicados com efeito regulatório ou operacional para administradoras de consórcios.
 
-                1. **Resuma cada tópico com inteligência:**
-                - Reduza a extensão dos textos, sem perder o significado, a mensagem ou o contexto principal.
-                - Elimine redundâncias, exemplos desnecessários e explicações óbvias.
-                - Mantenha o que for essencial para a análise e a tomada de decisão.
+        <!-- Liste todas as notícias deste tema -->
+        ### [<título>](<link>) — *<fonte>*, <data>
+        **Essência (fatos verificados):**
+        - ...
+        **Por que importa (setor de consórcios):** ...
+        **Relevância:** 0.00
 
-                2. **Lapidar o texto original (pré-relatório)** sem descaracterizar:
-                - Corrija pequenos vícios de linguagem e torne a leitura mais fluida.
-                - Faça ajustes de tom e clareza, mantendo o estilo direto e analítico.
+        <!-- Repita o bloco para cada item de BCB aprovado -->
 
-                3. **Transforme cada título de tópico em um link clicável:**
-                - Encontre a **fonte mais relevante** de cada notícia/tópico.
-                - Formate o título como `[Título do tópico](link)` em Markdown.
-                - ❗️Não repita o link no corpo nem em seção separada.
+        ## Macroeconomia
+        > Indicadores/choques com efeito em demanda, risco, funding e preço.
 
-                4. **Conecte com o setor de consórcios sempre que possível:**
-                - Comente sobre impacto no poder de compra, custo do crédito, confiança do consumidor, inflação, Selic, inadimplência, etc.
+        ### [<título>](<link>) — *<fonte>*, <data>
+        **Essência (fatos verificados):**
+        - ...
+        **Por que importa (setor de consórcios):** ...
+        **Relevância:** 0.00
 
-                5. **Se a notícia tiver mais de 15 dias**, insira uma observação indicando não ser uma notícia recente:
-                - Use tom informativo e amigável:
+        <!-- Repita para todos os itens de Macroeconomia aprovados -->
 
-                6. **Siga os princípios da brevidade inteligente:**
-                - **Clareza:** linguagem direta, sem jargões desnecessários.
-                - **Objetividade:** evite redundâncias e floreios.
-                - **Precisão:** use os termos mais adequados ao contexto.
-                - **Impacto:** destaque o que é mais relevante para tomada de decisão.
+        ## Consórcios (Setor/Empresas)
+        > Movimentos setoriais, dados ABAC, empresas, fraudes, parcerias/M&A.
 
-                7. **Não assine o relatório.** Nunca inclua rodapés com autor ou gerador de IA.
+        ### [<título>](<link>) — *<fonte>*, <data>
+        **Essência (fatos verificados):**
+        - ...
+        **Por que importa (setor de consórcios):** ...
+        **Relevância:** 0.00
 
-                ---
+        <!-- Repita para todos os itens de Consórcios aprovados -->
 
-                ## 📝 Pré-relatório (base para o trabalho):
+        ## Anexos — Fontes Utilizadas
+        - Liste todas as notícias (por tema): <fonte> — <título> (<data>) — <link>
 
-                {merged}
+        CONTEÚDO APROVADO (não modifique fatos, apenas formate):
 
-                ---
+        {state.get('merged_content')}
 
-                Agora, com base no pré-relatório acima, gere o relatório final lapidado e formatado.
                 """
 
 
