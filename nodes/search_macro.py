@@ -39,50 +39,51 @@ def search_macro(state):
 
 
     prompt = f"""
-        Você é um analista econômico objetivo. Leia e avalie notícias completas sobre o mercado de consórcios no Brasil. Responda **APENAS** com JSON válido (um array), sem comentários adicionais.
 
-        REGRAS DE FILTRO (obrigatórias):
-        1) Considere **somente** matérias publicadas nos **últimos 16 dias** em relação a {data_hoje}.
-        - O campo de data pode vir como ISO (ex.: 2025-08-10) ou relativo (ex.: "há 3 dias"). Converta para **DD-MM-AAAA**.
-        2) **Fontes confiáveis apenas**: priorize domínios como ABAC, Valor Econômico, G1, Estadão, O Globo, Folha, Exame, CNN Brasil, InfoMoney, bcb.gov.br, IBGE, Ipea, B3. 
-        3) **Deduplicação**: se vários itens tratarem do mesmo fato, mantenha o mais completo/mais claro (ou o da fonte original) e descarte o resto.
+        Você é um analista macroeconômico. Leia e avalie as notícias de MACROECONOMIA e responda **APENAS** com um **JSON válido (array)**, sem comentários.
+
+        REGRAS (obrigatórias):
+        - Use SOMENTE as informações dos itens de entrada (`itens_json`). Não invente dados.
+        - Aceite `texto_completo=true` ou `snippet` quando necessário (conservador ao interpretar).
+        - Fontes preferenciais: IBGE (IPCA/PIB/PNAD), Banco Central (Selic/Crédito), Ipea, B3, Valor, Estadão, G1, Exame, CNN Brasil, InfoMoney e congêneres confiáveis.
+        - Exclua publieditoriais e vídeos sem transcrição.
+        - Deduplicação por link/título.
+        - **Inclua os itens que tem alguma relação com uma empresa de consórcios. Gere **1 objeto por item**. Preserve a ordem de entrada.
 
         INSTRUÇÕES DE ANÁLISE:
-        - Leia o **campo `texto`** integralmente; não invente dados que não estejam nele.
-        - Seja 100% factual: números, percentuais, datas, órgãos e nomes **precisam** estar no texto.
-        - Escreva "Achados principais" em **3 a 5 linhas** (bullets implícitos em frases separadas).
-        - Em "Por que importa", conecte o fato **explicitamente** ao setor de consórcios (demanda, ticket, inadimplência, captação, regulação, operações, etc.).
-        - Atribua "Relevancia" entre **0.0 e 1.0**:
-        - 0.9–1.0: decisões regulatórias (BCB/CMN/Copom), mudanças na Selic, dados setoriais oficiais (ABAC), choques macro relevantes.
-        - 0.7–0.8: indicadores macro com impacto claro no setor, grandes operações/fraudes, M&As relevantes.
-        - 0.4–0.6: notícias de empresas com algum efeito no setor.
-        - <0.4: periférico; geralmente descarte se não passar nos filtros.
+        - Foque em indicadores com potencial de afetar consórcios: Selic, IPCA, câmbio, PIB, emprego/renda/consumo, crédito/inadimplência, confiança, risco-país.
+        - Em “por_que_importa”, conecte o fato macro ao setor: demanda por cotas, custo de oportunidade (juros), inadimplência/PDD, captação/funding, ticket médio.
+        - Relevância (0.0–1.0):
+        - 0.90–1.00: Copom/Selic; IPCA/IBGE; choques macro significativos.
+        - 0.70–0.85: PIB, emprego (CAGED/PNAD), crédito/BCB, confiança.
+        - 0.40–0.65: análises/projeções com impacto moderado.
+        - <0.40: periférico.
 
         ENTRADA:
         - Hoje: {data_hoje}
-        - Itens (JSON): 
+        - Itens (JSON):
         {base_para_llm}
 
-        SAÍDA (JSON array). Cada elemento deve seguir **exatamente** o schema abaixo (chaves em minúsculas):
+        SAÍDA (JSON array). Schema por elemento:
 
         [
         {{
             "titulo": "<título original>",
             "achados_principais": [
-            "<linha 1 com dado verificável>",
+            "<linha 1 com números/datas/órgãos>",
             "<linha 2>",
-            "<linha 3>",
-            "se a matéria for bastante relevante podem ter mais linhas"
+            "<linha 3 (4ª/5ª se necessário)>"
             ],
-            "por_que_importa": "<conectando a notícia ao setor de consórcios>",
+            "por_que_importa": "<canal de transmissão macro → consórcios>",
             "fonte": "<nome da fonte>",
             "link": "<URL>",
-            "data": "<DD-MM-AAAA>",
+            "data": "<DD-MM-AAAA ou vazio se indeterminável>",
             "relevancia": 0.0
         }}
         ]
 
-        Se **nenhum** item atender aos filtros, responda **[]**.
+        Se nenhum item for válido, responda **[]**.
+
 
     """
 

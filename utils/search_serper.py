@@ -89,12 +89,13 @@ def buscar_noticias_serper_bacen(query, max_results=8):
 
 # 🔍 Inclui termos para foco no Brasil e em notícias oficiais
     query_final = (
-        f"{query} "
-        f"(normativa OR regulamentação OR resolução OR comunicado OR decisão) "
-        f"OR site:abac.org.br "
-        f"OR site:bcb.gov.br/noticias "
-        f"OR site:g1.globo.com/tudo-sobre/banco-central-do-brasil"
-        f"{datetime.now().strftime('%B %Y')} "  ## Filtr de data já aplicado
+        f"""{query} 
+            site:bcb.gov.br intitle:(resolução OR circular OR comunicado OR copom OR selic OR "consulta pública")
+            site:bcb.gov.br inurl:/noticias (resolução OR circular OR comunicado OR copom OR selic OR pix OR "open finance")
+            site:bcb.gov.br (consórcio OR consórcios OR "sistema de consórcios")
+        """
+        
+        
     )
 
     url = "https://google.serper.dev/news"
@@ -104,7 +105,7 @@ def buscar_noticias_serper_bacen(query, max_results=8):
         "gl": "br",       # Geolocalização Brasil
         "hl": "pt-br",  # Idioma português
         "location": "Brazil",
-        "tbs": "qdr:m"   # Filtro para notícias da última semana
+        "tbs": "qdr:m"   # Filtro para notícias do último mes
     }
 
     payload_json = json.dumps(payload)

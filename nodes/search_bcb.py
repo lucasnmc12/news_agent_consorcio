@@ -41,51 +41,52 @@ def search_bcb(state):
 
     prompt = f""""
 
-    Você é um analista econômico objetivo. Leia e avalie notícias completas sobre o mercado de consórcios no Brasil. Responda **APENAS** com JSON válido (um array), sem comentários adicionais.
+    Você é um analista regulatório. Leia e avalie as notícias relacionadas ao BANCO CENTRAL/CMN/Copom e responda **APENAS** com um **JSON válido (array)**, sem comentários.
 
-REGRAS DE FILTRO (obrigatórias):
-1) Considere **somente** matérias publicadas nos **últimos 16 dias** em relação a {data_hoje}.
-   - O campo de data pode vir como ISO (ex.: 2025-08-10) ou relativo (ex.: "há 3 dias"). Converta para **DD-MM-AAAA**.
-2) **Fontes confiáveis apenas**: priorize domínios como ABAC, Valor Econômico, G1, Estadão, O Globo, Folha, Exame, CNN Brasil, InfoMoney, bcb.gov.br, IBGE, Ipea, B3. 
-3) **Deduplicação**: se vários itens tratarem do mesmo fato, mantenha o mais completo/mais claro (ou o da fonte original) e descarte o resto.
+    REGRAS (obrigatórias):
+    - Use SOMENTE as informações dos itens de entrada (`itens_json`). Não invente dados.
+    - Aceite `texto_completo=true` ou apenas `snippet` (se não houver texto completo). Se for snippet, seja conservador.
+    - Priorize atos/temas: Resoluções/Resoluções CMN, Circulares, Comunicados, Consultas Públicas, Copom/Selic, Pix/Open Finance, registradoras, SCR, compliance/supervisão.
+    - Fontes preferenciais: bcb.gov.br, CMN, e cobertura de imprensa econômica confiável (Valor, Estadão, G1, Exame, InfoMoney etc.).
+    - Exclua publieditoriais e vídeos sem transcrição.
+    - Deduplicação: se forem o mesmo fato (mesmo link/título), mantenha o mais completo.
+    - **Inclua TODOS os itens válidos**. Gere **1 objeto por item**. Preserve a ordem de entrada.
 
-INSTRUÇÕES DE ANÁLISE:
-- Leia o **campo `texto`** integralmente; não invente dados que não estejam nele.
-- Seja 100% factual: números, percentuais, datas, órgãos e nomes **precisam** estar no texto.
-- Escreva "Achados principais" em **3 a 5 linhas** (bullets implícitos em frases separadas).
-- Em "Por que importa", conecte o fato **explicitamente** ao setor de consórcios (demanda, ticket, inadimplência, captação, regulação, operações, etc.).
-- Atribua "Relevancia" entre **0.0 e 1.0**:
-  - 0.9–1.0: decisões regulatórias (BCB/CMN/Copom), mudanças na Selic, dados setoriais oficiais (ABAC), choques macro relevantes.
-  - 0.7–0.8: indicadores macro com impacto claro no setor, grandes operações/fraudes, M&As relevantes.
-  - 0.4–0.6: notícias de empresas com algum efeito no setor.
-  - <0.4: periférico; geralmente descarte se não passar nos filtros.
+    INSTRUÇÕES DE ANÁLISE:
+    - Reflita com precisão o teor regulatório e a decisão/consulta/comunicado.
+    - Em “por_que_importa”, explique o efeito sobre administradoras de consórcios: exigências regulatórias, reporte, provisões/risco, capital/funding, liquidez, processos de compliance/auditoria, impacto operacional (Pix/Open Finance/infra).
+    - Relevância (0.0–1.0):
+      - 0.95–1.00: normas oficiais (Resolução/Circular/Lei) com impacto direto; decisões Copom/Selic.
+      - 0.80–0.90: comunicados/ofícios/consultas com alta probabilidade de impacto.
+      - 0.60–0.75: falas/sinalizações relevantes; enforcement setorial.
+      - <0.60: menções periféricas/baixa materialidade.
 
-ENTRADA:
-- Hoje: {data_hoje}
-- Itens (JSON): 
-{base_para_llm}
+    ENTRADA:
+    - Hoje: {data_hoje}
+    - Itens (JSON):
+    {base_para_llm}
 
-SAÍDA (JSON array). Cada elemento deve seguir **exatamente** o schema abaixo (chaves em minúsculas):
+    SAÍDA (JSON array). Schema por elemento:
 
-[
-  {{
-    "titulo": "<título original>",
-    "achados_principais": [
-      "<linha 1 com dado verificável>",
-      "<linha 2>",
-      "<linha 3>",
-      "se a matéria for bastante relevante podem ter mais linhas"
-    ],
-    "por_que_importa": "<conectando a notícia ao setor de consórcios>",
-    "fonte": "<nome da fonte>",
-    "link": "<URL>",
-    "data": "<DD-MM-AAAA>",
-    "relevancia": 0.0
-  }}
-]
+    [
+      {{
+        "titulo": "<título original>",
+        "achados_principais": [
+          "<linha 1 com o que foi decidido/consultado/ comunicado>",
+          "<linha 2 com números/datas/alcance quando existirem>",
+          "<linha 3 (4ª/5ª se necessário, mantendo factual)>"
+        ],
+        "por_que_importa": "<efeito prático para administradoras de consórcios>",
+        "fonte": "<nome da fonte>",
+        "link": "<URL>",
+        "data": "<DD-MM-AAAA ou vazio se indeterminável>",
+        "relevancia": 0.0
+      }}
+    ]
 
-Se **nenhum** item atender aos filtros, responda **[]**.
-    
+    Se nenhum item for válido, responda **[]**.
+
+                    
     """
 
 
