@@ -1,5 +1,6 @@
 import os, sys, json, re
 from datetime import datetime
+from utils.scraper import _extrair_primeiro_json_array
 
 # ajuste se necessário
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -37,8 +38,12 @@ def main():
     print(f"[LIVE] Com texto completo: {completos}/{len(itens)}")
 
     # 2) extrai o JSON que a LLM retornou
-    resposta = out["search_consorcios"]
-    parsed = _extrair_json_da_resposta(resposta)
+    #resposta = out["search_consorcios"]
+    parsed = out.get("consorcios_llm_json", [])
+    # fallback: tentar parsear do RAW se vier vazio/None
+    if not parsed:
+        raw = out.get("consorcios_llm_raw", "")
+        parsed = _extrair_primeiro_json_array(raw)  # mesma função sanitizadora usada no nó
     print(f"[LIVE] Itens no JSON final: {len(parsed)}")
 
     # 3) valida o schema mínimo por item
@@ -54,6 +59,8 @@ def main():
         json.dump(itens, f, ensure_ascii=False, indent=2)
     with open("tests/_artifacts/consorcios_llm_live.json", "w", encoding="utf-8") as f:
         json.dump(parsed, f, ensure_ascii=False, indent=2)
+    with open("tests/_artifacts/consorcios_llm_raw.txt", "w", encoding="utf-8") as f:
+        f.write(out.get("consorcios_llm_raw", ""))
 
     print("Snapshots salvos em tests/_artifacts/consorcios_*.json")
 

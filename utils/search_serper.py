@@ -11,7 +11,7 @@ if not os.getenv("SERPER_API_KEY"):
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
 
-def buscar_noticias_serper(query, max_results=5):
+def buscar_noticias_serper(query, max_results=8):
     """
     Faz uma busca no Google usando a API do Serper.dev com foco no Brasil.
 
@@ -73,7 +73,7 @@ def buscar_noticias_serper(query, max_results=5):
 
     return noticias
 
-def buscar_noticias_serper_bacen(query, max_results=5):
+def buscar_noticias_serper_bacen(query, max_results=8):
     """
     Faz uma busca no Google usando a API do Serper.dev com foco no Brasil.
 

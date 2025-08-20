@@ -2,6 +2,7 @@ from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
 import requests
 import trafilatura
 from typing import List, Dict, Tuple, Optional
+import re, json
 
 
 
@@ -201,3 +202,19 @@ def _montar_corpus_para_llm(completos, parciais, preview_full=1200, preview_snip
         )
 
     return "\n".join(blocos)
+
+def _extrair_primeiro_json_array(s: str):
+    if not s: return []
+    # remove cercas de código
+    s = re.sub(r"^```(?:json)?\s*|\s*```$", "", s.strip(), flags=re.MULTILINE)
+    # pega o primeiro bloco [...]
+    a, b = s.find("["), s.rfind("]")
+    if a == -1 or b == -1 or b <= a:
+        return []
+    js = s[a:b+1]
+    # conserta vírgula antes de ] ou }
+    js = re.sub(r",\s*(\]|\})", r"\1", js)
+    try:
+        return json.loads(js)
+    except Exception:
+        return []
