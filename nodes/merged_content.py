@@ -15,6 +15,7 @@ def merged_content(state):
 
             REGRAS GERAIS (obrigatórias):
             - Use SOMENTE o conteúdo fornecido nos itens. NÃO invente dados nem traga fontes externas.
+            - Se a data da notícia tiver mais de 28 dias, descarte o item do resultado gerado.
             - Os itens vêm em um array JSON, cada um com: titulo, achados_principais[], por_que_importa, fonte, link, data (DD-MM-AAAA ou vazio), relevancia (0.0–1.0) e origem ∈ (bcb, macro, consorcios).
             - Agrupe a saída por TEMA: Banco Central (BCB), Macroeconomia, Consórcios (setor/empresas).
             - Dentro de cada tema, **ordene por relevancia desc**. Se houver muitos itens, priorize os mais relevantes e consolide duplicatas (mesmo fato) em um único bloco.

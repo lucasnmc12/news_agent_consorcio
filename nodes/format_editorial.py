@@ -21,12 +21,14 @@ def format_editorial(state):
         - Mantenha todos os itens aprovados, apenas melhorando clareza, ortografia e padronização.
         - Preserve a ordem por TEMA (BCB, Consórcios, Macroeconomia). Dentro de cada tema, use a ordem que vier no conteúdo aprovado.
         - Se algum item não tiver data, deixe em branco (não invente). Se não houver link, não crie link.
+        - Se algum item tiver mais de 28 dias, descarte o item do resultado gerado. {data_hoje}
+        - Ordene os itens por relevância, o mais relevante primeiro. Não descarte a agrupação por tema.
 
         REGRAS DE FORMATAÇÃO:
         - Saída em **Markdown**.
-        - Título de cada notícia deve ser **clicável**: `### [<título>](<link>) — *<fonte>*, <data>`
+        - Título de cada notícia deve ser **clicável**: `### [<título>](<link>) — *<fonte>*
         - Logo abaixo do título, use subblocos padronizados:
-            - Converta `achados_principais` em 2–5 bullets, com quebras de linhas se for possível sem comprometer o sentido, sem reescrever números.
+            - Converta de forma mais direta os `achados_principais` em 2–5 bullets, com quebras de linhas se for possível sem comprometer o sentido, sem reescrever números.
         - Quebra de linha
         - **Por que importa: **
             - Reescreva o texto aprovado, que está no infinitivo impessoal, em uma forma nominalizada, destacando a importância da ação. Até 4 linhas (sem extrapolar).
@@ -46,10 +48,10 @@ def format_editorial(state):
         ESTRUTURA DO RELATÓRIO:
 
         # Na Mira da Controladoria - Relatório Quinzenal 
-        **Data:** {data_hoje}
+        **Data:** ...
 
         ## Sumário Executivo
-        - Em 4–6 linhas, separando cada assunto por tópicos, descreva APENAS com base no conteúdo aprovado os principais riscos, oportunidades e pontos de atenção para a gestão. Não inclua nada que não esteja explícito nos itens.
+        - Em 3–6 linhas, separando cada assunto por tópicos, descreva APENAS com base no conteúdo aprovado os principais riscos, oportunidades e pontos de atenção para a gestão. Não inclua nada que não esteja explícito nos itens.
 
         ## Banco Central (BCB)
         > Decisões/atos/comunicados com efeito regulatório ou operacional das últimas semanas.

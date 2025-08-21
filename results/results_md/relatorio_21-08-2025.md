@@ -1,150 +1,142 @@
 # Na Mira da Controladoria - Relatório Quinzenal
-**Data:** 21 de August de 2025
+**Data:** 21-08-2025
 
 ## Sumário Executivo
-- A decisão do STF sobre ordens estrangeiras introduz incerteza jurídica e volatilidade no mercado financeiro, demandando atenção ao compliance e gestão de liquidez.
-- A queda nas expectativas de inflação para 2025 (Boletim Focus) pode sinalizar juros mais baixos, favorecendo a demanda por consórcios.
-- O setor de consórcios exibe forte desempenho, com a entrada de novos players como Avelloz (motos) e QuintoAndar (imobiliário), indicando expansão e concorrência.
-- Riscos incluem a percepção negativa do cenário econômico doméstico e global, que podem impactar inadimplência e novas adesões.
-- Oportunidades surgem da atratividade do consórcio em cenários de juros elevados e da expansão para novos nichos de mercado.
+- O mercado de consórcios demonstra forte crescimento nos segmentos de motos e imobiliário, com a entrada de novos players relevantes como Avelloz e QuintoAndar, indicando oportunidades de expansão de volume e ticket médio.
+- A expectativa de inflação para 2025 abaixo de 5% é positiva, pois impacta a correção das cartas de crédito e parcelas, além de poder influenciar a política monetária.
+- Novas regulamentações do Banco Central e decisões do STF sobre ordens estrangeiras exigem atenção à gestão de risco, compliance e liquidez.
+- O cenário macroeconômico global, com sinais de recessão nos EUA, pode impactar a confiança do consumidor e o risco de inadimplência no futuro.
 
 ## Banco Central (BCB)
 > Decisões/atos/comunicados com efeito regulatório ou operacional das últimas semanas.
 
-### [Busca de normas](https://www.bcb.gov.br/pre/normativos/busca/buscaNormativo.asp?tema=&startRow=510&refinadorTipo=&refinadorRevogado=&tipo=P&tipoDocumento=0&numero=&conteudo=BC&dataInicioBusca=&dataFimBusca=) — *Banco Central do Brasil*, 07-08-2025
-- Comunicado n° 43.635, emitido pelo Banco Central do Brasil em 7 de agosto de 2025.
-- O comunicado divulga condições para a realização de operações compromissadas.
+### [Representantes de big techs reclamam de STF, Anatel, Congresso e PIX para órgão dos EUA que investiga Brasil](https://g1.globo.com/tecnologia/noticia/2025/08/21/representantes-de-big-techs-reclamam-de-stf-anatel-congresso-e-pix-para-orgao-dos-eua-que-investiga-brasil.ghtml) — *G1*
+- Associações de big techs expressam preocupações ao USTR sobre o aumento da responsabilidade das redes sociais no Brasil.
+- Reclamações incluem medidas de órgãos como STF, Congresso, Anatel e Banco Central.
 
-**Por que importa:**
-A potencial influência no custo de captação de recursos e na rentabilidade de aplicações financeiras, exigindo monitoramento.
+**Por que importa:** A baixa materialidade para o setor de consórcios, com foco em regulação de conteúdo e soberania jurídica, indica um impacto indireto e limitado nas operações da administradora.
 
-**Relevância:** 0.85
+**Data:** 21-08-2025
 
-### [Decisão de Dino: entenda as dúvidas geradas e como bancos podem ser afetados](https://g1.globo.com/economia/noticia/2025/08/19/decisao-de-dino-entenda-as-duvidas-geradas-e-como-bancos-podem-ser-afetados.ghtml) — *G1*, 20-08-2025
-- O ministro Flávio Dino (STF) decidiu que leis e determinações estrangeiras não têm validade automática no Brasil, por soberania nacional.
-- Instituições financeiras brasileiras foram proibidas de atender ordens de tribunais estrangeiros sem autorização expressa do STF.
-- A decisão gerou dúvidas sobre seus impactos para bancos e empresas com operações internacionais.
+**Relevância:** 0.50
 
-**Por que importa:**
-A necessidade de revisão dos procedimentos de compliance para ordens estrangeiras, mitigando o aumento do risco operacional em cenários internacionais.
+### [Decisão de Dino: entenda as dúvidas geradas e como bancos podem ser afetados](https://g1.globo.com/economia/noticia/2025/08/19/decisao-de-dino-entenda-as-duvidas-geradas-e-como-bancos-podem-ser-afetados.ghtml) — *G1*
+- O ministro do STF, Flávio Dino, decidiu que leis e determinações de outros países não têm validade automática no Brasil.
+- A decisão proíbe instituições financeiras brasileiras de atender ordens de tribunais estrangeiros sem autorização expressa do STF.
 
-**Relevância:** 0.75
+**Por que importa:** A decisão do STF adiciona complexidade e risco jurídico-operacional para administradoras com relações internacionais, exigindo a revisão de processos de compliance e auditoria para ordens estrangeiras.
 
-### [Ibovespa despenca 2% com queda de bancos após decisão de Dino que pode afetar Magnitsky; dólar sobe a R$ 5,49](https://g1.globo.com/economia/noticia/2025/08/19/dolar-ibovespa.ghtml) — *G1*, 19-08-2025
-- O mercado financeiro reagiu à decisão do ministro Flávio Dino (STF) que proibiu restrições "decorrentes de atos unilaterais estrangeiros" por parte de empresas ou instituições no Brasil.
-- Ações de bancos brasileiros caíram e o dólar subiu, refletindo a percepção de maior risco e incerteza para investidores.
-
-**Por que importa:**
-O potencial de elevação do custo de captação de recursos e o impacto na rentabilidade de aplicações financeiras.
+**Data:** 20-08-2025
 
 **Relevância:** 0.70
 
-### [Representantes de big techs reclamam de STF, Anatel, Congresso e PIX para órgão dos EUA que investiga Brasil](https://g1.globo.com/tecnologia/noticia/2025/08/21/representantes-de-big-techs-reclamam-de-stf-anatel-congresso-e-pix-para-orgao-dos-eua-que-investiga-brasil.ghtml) — *G1*, 21-08-2025
-- Associações de grandes empresas de tecnologia americanas expressaram preocupações ao Escritório do Representante Comercial dos EUA (USTR) sobre o ambiente regulatório brasileiro.
-- As reclamações incluem medidas tomadas pelo Supremo Tribunal Federal (STF), Anatel, Congresso Nacional e Banco Central.
+### [Busca de normas](https://www.bcb.gov.br/pre/normativos/busca/buscaNormativo.asp?tema=&startRow=510&refinadorTipo=&refinadorRevogado=&tipo=P&tipoDocumento=0&numero=&conteudo=BC&dataInicioBusca=&dataFimBusca=) — *Banco Central do Brasil*
+- Comunicado n° 43.635, de 7 de agosto de 2025, emitido pelo Banco Central do Brasil.
+- O comunicado divulga condições para a realização de operações compromissadas.
 
-**Por que importa:**
-A importância de monitorar potenciais impactos em processos operacionais e de compliance, especialmente em relação à digitalização e ao Open Finance.
+**Por que importa:** O comunicado do BCB sobre operações compromissadas afeta diretamente a gestão de liquidez e funding, exigindo a revisão das estratégias de captação e aplicação de recursos no mercado financeiro.
 
-**Relevância:** 0.60
+**Data:** 07-08-2025
+
+**Relevância:** 0.90
+
+### [CMN aprova Resolução que aprimora regras aplicáveis a instituições associadas ao FGC](https://www.bcb.gov.br/detalhenoticia/20784/nota) — *Banco Central do Brasil*
+- O Conselho Monetário Nacional (CMN) aprovou a Resolução n° 5.238.
+- A resolução altera regras aplicáveis a instituições associadas ao Fundo Garantidor de Créditos (FGC).
+
+**Por que importa:** A aprovação da Resolução n° 5.238 pelo CMN pode influenciar o ambiente regulatório e as expectativas de capital e risco para o setor financeiro, exigindo atenção à gestão de risco e solidez, especialmente para relações com instituições financeiras cobertas pelo FGC.
+
+**Data:** 31-07-2025
+
+**Relevância:** 0.95
+
+### [Atas do Comitê de Política Monetária - Copom](https://www.bcb.gov.br/publicacoes/atascopom) — *Banco Central do Brasil*
+- Página oficial do Banco Central do Brasil para acesso às atas das reuniões do Comitê de Política Monetária (Copom).
+- Permite conhecer a atualização da conjuntura econômica e o cenário básico da política monetária.
+
+**Por que importa:** O acesso às atas do Copom é fundamental para a projeção de cenários econômicos e planejamento financeiro, auxiliando na gestão de liquidez e avaliação de risco devido à influência da Selic no custo de capital e na demanda.
+
+**Data:** 31-07-2025
+
+**Relevância:** 0.65
 
 ## Mercado de Consórcios
 > Movimentos setoriais, dados ABAC, empresas, fraudes, parcerias/M&A.
 
-### [Avelloz cria consórcio nacional para acelerar venda de motos](https://mobilidade.estadao.com.br/meios-de-transporte/avelloz-cria-consorcio-nacional-para-acelerar-venda-de-motos) — *Estadão Mobilidade*, 18-08-2025
-- A montadora de motos Avelloz lançou o Consórcio Nacional Avelloz para acelerar suas vendas.
-- As vendas de cotas de consórcio de motos cresceram 8,2% no primeiro semestre de 2025, segundo a ABAC.
-- Os créditos comercializados em consórcios de motos atingiram R$ 14,39 bilhões no 1º semestre de 2025, um aumento de 15,9% em relação ao mesmo período de 2024.
+### [Avelloz cria consórcio nacional para acelerar venda de motos](https://mobilidade.estadao.com.br/meios-de-transporte/avelloz-cria-consorcio-nacional-para-acelerar-venda-de-motos) — *Estadão Mobilidade*
+- A montadora Avelloz lançou o Consórcio Nacional Avelloz em parceria com a Âncora Consórcios.
+- A venda de cotas de consórcio de motos cresceu 8,2% e os créditos comercializados R$14,39 bilhões (+15,9%) no 1º semestre de 2025 (ABAC).
 
-**Por que importa:**
-A confirmação da atratividade do consórcio para o setor automotivo e o bom momento do segmento de motos, indicando oportunidades de crescimento.
+**Por que importa:** A expansão das operações e parcerias no segmento de motos, impulsionando adesões e créditos, reforça a relevância do consórcio para aquisição de bens e a necessidade de monitorar a concorrência e o crescimento do segmento.
+
+**Data:** 18-08-2025
 
 **Relevância:** 0.80
 
-### [QuintoAndar estreia em consórcios, com cashback e opção de saque de saldo acumulado](https://exame.com/mercado-imobiliario/quintoandar-estreia-em-consorcios-com-cashback-e-opcao-de-saque-de-saldo-acumulado) — *Exame*, 05-08-2025
-- O QuintoAndar lançou oficialmente seu produto de consórcios imobiliários em 5 de agosto de 2025.
-- A empresa aposta em uma estratégia de flexibilidade com cashback e contratação 100% online.
-- A meta do QuintoAndar é comercializar R$ 500 milhões em cartas de consórcio até o final de 2025.
+### [QuintoAndar estreia em consórcios, com cashback e opção de saque de saldo acumulado](https://exame.com/mercado-imobiliario/quintoandar-estreia-em-consorcios-com-cashback-e-opcao-de-saque-de-saldo-acumulado) — *Exame*
+- O QuintoAndar anunciou sua entrada oficial no segmento de consórcios imobiliários em 5 de agosto de 2025.
+- A meta da empresa é ter R$ 500 milhões em cartas de consórcio até o final do ano, com contratação 100% online e parcelas a partir de R$ 683.
 
-**Por que importa:**
-O aumento da concorrência no segmento imobiliário e da visibilidade da modalidade, com potencial para impulsionar o volume de adesões e créditos.
+**Por que importa:** A entrada do QuintoAndar no segmento de consórcios imobiliários aumenta a concorrência e a visibilidade da modalidade, exigindo que a administradora avalie suas ofertas e canais de venda para manter a competitividade diante da meta ambiciosa e inovações.
+
+**Data:** 05-08-2025
 
 **Relevância:** 0.75
 
 ## Economia
 > Indicadores/choques com efeito em demanda, risco, funding e preço.
 
-### [Boletim Focus: pela 1ª vez desde janeiro, mercado vê estimativa de inflação de 2025 abaixo de 5%](https://g1.globo.com/economia/noticia/2025/08/18/boletim-focus-pela-1a-vez-desde-janeiro-mercado-ve-estimativa-de-inflacao-de-2025-abaixo-de-5percent.ghtml) — *G1*, 18-08-2025
-- Analistas do mercado financeiro reduziram a estimativa de inflação para 2025 para 4,95% (anteriormente 5,05%), pela primeira vez abaixo de 5% desde janeiro.
-- A projeção para 2025 ainda está acima do teto da meta de inflação (4,5%).
-- Projeções para 2026 recuaram para 4,40%, e para 2027 e 2028 mantiveram-se em 4% e 3,80%, respectivamente.
+### [Valor Econômico](https://valor.globo.com) — *Valor Econômico*
+- Ibovespa: -0,12% a 134.511 pts (21/08/2025 - 17h08).
+- Dólar Comercial: Compra 5,4770, Venda 5,4776 (0,09% de variação em 21/08/2025 - 17h00).
 
-**Por que importa:**
-O favorecimento da demanda por consórcios, pela redução do custo de oportunidade e maior previsibilidade para os consorciados.
+**Por que importa:** A variação do câmbio, especialmente do dólar, pode impactar o preço de bens duráveis, influenciando o valor das cartas de crédito e o ticket médio dos consórcios, o que pode exigir cartas de maior valor.
 
-**Relevância:** 0.95
+**Data:** 21-08-2025
 
-### [Por que o Brasil não cresce como outros países? Economistas explicam](https://www.cnnbrasil.com.br/economia/macroeconomia/por-que-o-brasil-nao-cresce-como-outros-paises-economistas-explicam) — *CNN Brasil*, 20-08-2025
-- O Brasil registra baixo crescimento desde a década de 1980, comparado a outros países emergentes.
-- Desde 2000, o Brasil tem uma média de crescimento de 2,4%, abaixo de China (8,2%), Índia (6,3%), Chile (3,4%), Colômbia (3,6%) e Peru (4,1%).
-- Fatores incluem crises fiscais, atraso educacional, falta de poupança, declínio da produtividade e investimento precário em tecnologia.
+**Relevância:** 0.55
 
-**Por que importa:**
-O risco de redução no volume de novas adesões e o aumento da inadimplência.
+### [EUA estão à beira de uma recessão, com preços subindo e emprego parado, diz economista da Moody’s](https://www.estadao.com.br/economia/eua-beira-da-recessao-inflacao-empregos-economista-moodys) — *Estadão*
+- Economista-chefe da Moody’s Analytics avalia que a economia dos EUA "está à beira da recessão".
+- Setores como indústria, agricultura e construção nos EUA já estão em contração, e o avanço do emprego "está parando".
+
+**Por que importa:** Uma possível recessão nos EUA pode desacelerar a economia global e brasileira, afetando PIB, emprego e renda, o que pode levar a uma menor confiança do consumidor, impactando a demanda por novas cotas e aumentando o risco de inadimplência.
+
+**Data:** 19-08-2025
 
 **Relevância:** 0.75
 
-### [EUA estão à beira de uma recessão, com preços subindo e emprego parado, diz economista da Moody’s](https://www.estadao.com.br/economia/eua-beira-da-recessao-inflacao-empregos-economista-moodys) — *Estadão*, 19-08-2025
-- O economista-chefe da Moody’s Analytics, Mark Zandi, avalia que a economia americana 'está à beira da recessão'.
-- Setores como indústria, agricultura e construção nos EUA já estão em contração.
-- O avanço do emprego nos EUA 'está parando' após um fraco relatório de julho.
+### [Boletim Focus: pela 1ª vez desde janeiro, mercado vê estimativa de inflação de 2025 abaixo de 5%](https://g1.globo.com/economia/noticia/2025/08/18/boletim-focus-pela-1a-vez-desde-janeiro-mercado-ve-estimativa-de-inflacao-de-2025-abaixo-de-5percent.ghtml) — *G1*
+- Analistas do mercado financeiro reduziram a estimativa de inflação (IPCA) para 2025 para 4,95%.
+- É a primeira vez que a projeção fica abaixo de 5% desde janeiro, mas ainda acima do teto da meta (4,5%).
 
-**Por que importa:**
-O potencial de geração de aversão ao risco, desvalorização cambial e pressão por juros mais altos, impactando a capacidade de pagamento e o custo de funding.
+**Por que importa:** A redução da estimativa de inflação para 2025 é positiva para o setor, pois implica menor corrosão do poder de compra da carta de crédito e pode abrir espaço para cortes na Selic, aumentando a competitividade do consórcio.
 
-**Relevância:** 0.70
+**Data:** 18-08-2025
 
-### [Notícias Ao Vivo do Brasil e do Mundo](https://www.cnnbrasil.com.br/autor/jojo-chan/economia/macroeconomia/pagina/321) — *CNN Brasil*, 27-03-2025
-- Pesquisa Futura de 27/03/2025: 42,8% consideram a geração de empregos ruim ou péssima.
-- Pesquisa Futura de 27/03/2025: 59,1% veem o cenário econômico como ruim ou péssimo.
+**Relevância:** 0.95
 
-**Por que importa:**
-O risco de redução no volume de novas adesões e o aumento da inadimplência.
+### [Recessão em 2025? Lady Gaga e The Office podem ser 'sinais de alerta' para crises econômicas](https://exame.com/pop/recessao-em-2025-lady-gaga-e-the-office-podem-ser-sinais-de-alerta-para-crises-economicas) — *Exame*
+- Artigo especula sobre uma possível recessão global em 2025, mencionando "ansiedade econômica em alta".
+- Compara o cenário atual com a Grande Recessão de 2008 e discute a retração na economia mundial nas redes sociais.
 
-**Relevância:** 0.70
+**Por que importa:** A percepção de "ansiedade econômica" pode impactar a confiança do consumidor, levando à postergação de grandes compras e, consequentemente, à redução da demanda por novas cotas de consórcio.
 
-### [Valor Econômico](https://valor.globo.com) — *Valor Econômico*, 21-08-2025
-- Ibovespa em 21/08/2025: 134.690 pts, variação de 0,02%.
-- Dólar Comercial em 21/08/2025: R$ 5,4781, variação de 0,10%.
-- Euro Comercial em 21/08/2025: R$ 6,3596, variação de -0,28%.
-
-**Por que importa:**
-A contribuição para um ambiente de mercado mais previsível, com atenção ao impacto do dólar elevado no ticket médio de bens duráveis.
-
-**Relevância:** 0.50
-
-### [Recessão em 2025? Lady Gaga e The Office podem ser 'sinais de alerta' para crises econômicas](https://exame.com/pop/recessao-em-2025-lady-gaga-e-the-office-podem-ser-sinais-de-alerta-para-crises-economicas) — *Exame*, 27-07-2025
-- Artigo especula sobre uma possível recessão global em 2025, usando a cultura pop como 'sinal de alerta'.
-- Menciona a volta de Lady Gaga e o uso de jeans de cintura baixa como possíveis indicadores de ansiedade econômica.
-
-**Por que importa:**
-O potencial de afetar a confiança do consumidor e a disposição para compromissos de longo prazo.
+**Data:** 27-07-2025
 
 **Relevância:** 0.45
 
 ## Ações futuras:
 
 ### Movimentos recomendados "pra ontem"
-- Avaliar e, se necessário, revisar os procedimentos de compliance para lidar com ordens de tribunais estrangeiros, conforme decisão do STF.
-- Analisar o impacto da volatilidade do mercado financeiro (queda de bancos, alta do dólar) sobre o custo de captação e a rentabilidade das aplicações.
-- Capitalizar a queda nas expectativas de inflação em 2025 na comunicação de vendas, reforçando a atratividade do consórcio em um cenário de juros potencialmente mais baixos.
-- Explorar oportunidades de crescimento no segmento de consórcios de motos, dado o bom desempenho e a entrada de novos players.
+- Revisar procedimentos internos de compliance e contabilidade à luz das novas resoluções do CMN e BCB, especialmente sobre operações compromissadas e gestão de risco.
+- Avaliar o impacto da decisão do STF sobre ordens estrangeiras na gestão de risco jurídico e compliance, caso a administradora tenha relações internacionais.
+- Analisar as estratégias de entrada da Avelloz e QuintoAndar para identificar oportunidades de mercado e ajustar estratégias comerciais e de produto.
 
 ### Ficar de olho
-- Desdobramentos da decisão do STF sobre a validade de ordens estrangeiras e suas repercussões no mercado financeiro.
-- Próximos relatórios do Boletim Focus para confirmação das expectativas de inflação e Selic.
-- Dados de confiança do consumidor e emprego, que podem impactar a demanda e a inadimplência.
-- Movimentações de novos players no mercado de consórcios, como o QuintoAndar, para avaliar estratégias de concorrência.
+- Novas publicações do Banco Central sobre regulamentação e política monetária (Copom).
+- Evolução dos indicadores macroeconômicos, especialmente inflação e taxa de juros, e sinais de desaceleração econômica global.
+- Movimentos de mercado e resultados de vendas de cotas no setor de consórcios, especialmente nos segmentos de motos e imobiliário.
 
 ### Anexos — Fontes Utilizadas
 - Os links utilizados para a pesquisa e coleta de informações estão inseridos nos respectivos títulos.
