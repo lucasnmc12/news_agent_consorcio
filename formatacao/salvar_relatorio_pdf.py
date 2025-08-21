@@ -32,18 +32,30 @@ def converter_md_para_html(nome_arquivo_md="relatorio.md"):
       <style>
         body {{
           font-family: 'Lato', sans-serif;
-          font-size: 14px;
           margin: 40px;
           color: #333;
           line-height: 1.6;
+          font-size: 12px;
         }}
-        h1, h2, h3 {{
+        h1 {{
+      color: #202E5F;
+      margin-bottom: 10px;
+      font-size: 20px; /* título principal */
+        }}
+        h2 {{
           color: #202E5F;
+          margin-bottom: 10px;
+          font-size: 16px; /* subtítulo */
         }}
-        a {{
+        h3 {{
           color: #202E5F;
-          text-decoration: none;
+          margin-bottom: 10px;
+          font-size: 14px; /* subtítulo menor */
         }}
+            a {{
+              color: #202E5F;
+              text-decoration: none;
+            }}
         a:hover {{
           text-decoration: underline;
         }}

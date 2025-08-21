@@ -6,6 +6,9 @@ from utils.scraper import _extrair_primeiro_json_array
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from nodes.search_consorcios import search_consorcios
+from nodes.search_bcb import search_bcb
+from nodes.search_macro import search_macro
+
 
 def _extrair_json_da_resposta(resp_str: str):
     # seu nó grava: "[consórcios] ...\n\n{JSON}"
