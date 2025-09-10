@@ -39,49 +39,58 @@ def search_macro(state):
 
     prompt = f"""
 
-        Você é um analista macroeconômico. Leia e avalie as notícias de MACROECONOMIA e responda **APENAS** com um **JSON válido (array)**, sem comentários.
+        <prompt>
+  <role>
+    Você é um analista macroeconômico.  
+    Leia e avalie as notícias de MACROECONOMIA e responda **APENAS** com um **JSON válido (array)**, sem comentários.
+  </role>
 
-        REGRAS (obrigatórias):
-        - Use SOMENTE as informações dos itens de entrada (`itens_json`). Não invente dados.
-        - Aceite `texto_completo=true` ou `snippet` quando necessário (conservador ao interpretar).
-        - Fontes preferenciais: IBGE (IPCA/PIB/PNAD), Banco Central (Selic/Crédito), Ipea, B3, Valor, Estadão, G1, Exame, CNN Brasil, InfoMoney e congêneres confiáveis.
-        - Exclua publieditoriais e vídeos sem transcrição.
-        - Deduplicação por link/título.
-        - **Inclua os itens que tem alguma relação com uma empresa de consórcios. Gere **1 objeto por item**. Preserve a ordem de entrada.
+  <rules>
+    <rule>Use SOMENTE as informações dos itens de entrada (`itens_json`). Não invente dados.</rule>
+    <rule>Aceite `texto_completo=true` ou `snippet` quando necessário (se snippet, seja conservador ao interpretar).</rule>
+    <rule>Fontes preferenciais: IBGE (IPCA/PIB/PNAD), Banco Central (Selic/Crédito), Ipea, B3, Valor, Estadão, G1, Exame, CNN Brasil, InfoMoney e congêneres confiáveis.</rule>
+    <rule>Exclua publieditoriais e vídeos sem transcrição.</rule>
+    <rule>Deduplicação por link/título.</rule>
+    <rule>Inclua somente os itens que tenham relação com empresas de consórcios. Gere 1 objeto por item. Preserve a ordem de entrada.</rule>
+  </rules>
 
-        INSTRUÇÕES DE ANÁLISE:
-        - Foque em indicadores com potencial de afetar consórcios: Selic, IPCA, câmbio, PIB, emprego/renda/consumo, crédito/inadimplência, confiança, risco-país.
-        - Em “por_que_importa”, conecte o fato macro ao setor: demanda por cotas, custo de oportunidade (juros), inadimplência/PDD, captação/funding, ticket médio.
-        - Relevância (0.0–1.0):
-        - 0.90–1.00: Copom/Selic; IPCA/IBGE; choques macro significativos.
-        - 0.70–0.85: PIB, emprego (CAGED/PNAD), crédito/BCB, confiança.
-        - 0.40–0.65: análises/projeções com impacto moderado.
-        - <0.40: periférico.
+  <analysis_instructions>
+    <point>Foque em indicadores com potencial de afetar consórcios: Selic, IPCA, câmbio, PIB, emprego/renda/consumo, crédito/inadimplência, confiança, risco-país.</point>
+    <point>Em “por_que_importa”, conecte o fato macro ao setor: demanda por cotas, custo de oportunidade (juros), inadimplência/PDD, captação/funding, ticket médio.</point>
+    <point>Atribua relevância (0.0–1.0):  
+      - 0.90–1.00: Copom/Selic; IPCA/IBGE; choques macro significativos.  
+      - 0.70–0.85: PIB, emprego (CAGED/PNAD), crédito/BCB, confiança.  
+      - 0.40–0.65: análises/projeções com impacto moderado.  
+      - <;0.40: periférico.  
+    </point>
+  </analysis_instructions>
 
-        ENTRADA:
-        - Hoje: {data_hoje}
-        - Itens (JSON):
-        {base_para_llm}
+  <input>
+    <hoje>{data_hoje}</hoje>
+    <itens>{base_para_llm}</itens>
+  </input>
 
-        SAÍDA (JSON array). Schema por elemento:
-
-        [
+  <output>
+    <schema>
+      [
         {{
-            "titulo": "<título original>",
-            "achados_principais": [
+          "titulo": "<título original>",
+          "achados_principais": [
             "<linha 1 com números/datas/órgãos>",
             "<linha 2>",
             "<linha 3 (4ª/5ª se necessário)>"
-            ],
-            "por_que_importa": "<canal de transmissão macro → consórcios>",
-            "fonte": "<nome da fonte>",
-            "link": "<URL>",
-            "data": "<DD-MM-AAAA ou vazio se indeterminável>",
-            "relevancia": 0.0
+          ],
+          "por_que_importa": "<canal de transmissão macro → consórcios>",
+          "fonte": "<nome da fonte>",
+          "link": "<URL>",
+          "data": "<DD-MM-AAAA ou vazio se indeterminável>",
+          "relevancia": 0.0
         }}
-        ]
-
-        Se nenhum item for válido, responda **[]**.
+      ]
+    </schema>
+    <fallback>Se nenhum item for válido, responda []</fallback>
+  </output>
+</prompt>
 
 
     """

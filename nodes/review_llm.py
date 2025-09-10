@@ -18,8 +18,6 @@ def review_llm(state):
 
         **Sua tarefa**:
         - Aplique melhorias com base no feedback fornecido.
-        - Corrija erros gramaticais e de digitação, se houver.
-        - Aumente a clareza, coesão e profissionalismo do texto.
         - Mantenha a estrutura editorial, datas, fontes e links presentes no conteúdo.
 
         Retorne o texto final já revisado.

@@ -1,9 +1,13 @@
 import os
 import webbrowser
 from markdown import markdown
+from pathlib import Path
 
 # Caminho absoluto do diretório base do projeto
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),"..", ".."))
+
+caminho_logo = os.path.join(base_dir, "formatacao", "logo_mm2.svg")
+caminho_logo_html = Path(caminho_logo).resolve().as_uri()  # 👉 converte para 'file:///'
 
 # Caminho do Markdown absoluto
 caminho_md = os.path.join(base_dir, "results", "results_md", "relatorio_21-07-2025.md")  # ajuste o nome se necessário
@@ -52,6 +56,7 @@ html_template = f"""
   </style>
 </head>
 <body>
+  <img src={caminho_logo_html} width="160" style="margin-bottom: 30px;">
   {html_conteudo}
 </body>
 </html>
